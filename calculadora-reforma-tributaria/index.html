@@ -26,6 +26,12 @@
 <meta property="og:locale" content="pt_BR">
 <meta property="og:title" content="Calculadora da transição da Reforma Tributária">
 <meta property="og:description" content="CBS e IBS ano a ano, com todas as alíquotas editáveis. Roda no seu navegador, sem enviar dado nenhum.">
+<meta property="og:image" content="https://GuilhermeLuizatto.github.io/portfolio/calculadora-reforma-tributaria/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Topo da calculadora da transição da Reforma Tributária.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://GuilhermeLuizatto.github.io/portfolio/calculadora-reforma-tributaria/og.png">
 <meta name="theme-color" content="#280e25">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23280e25'/%3E%3Crect x='8' y='8' width='16' height='4' rx='1.4' fill='%23ff9754'/%3E%3Crect x='8' y='15' width='7' height='9' rx='1.4' fill='%23ff9754'/%3E%3Crect x='17' y='15' width='7' height='9' rx='1.4' fill='%23e74f00'/%3E%3C/svg%3E">
 
@@ -178,9 +184,24 @@ tr.marco th[scope="row"]::after { content: " ●"; color: var(--laranja-sinal); 
   font-family: var(--mono); font-size: .74rem; color: var(--suave);
   border-left: 3px solid var(--laranja-sinal); padding: .4rem 0 .4rem .8rem; margin-top: .8rem; line-height: 1.5;
 }
+.nota-fonte a { color: var(--laranja-sinal); }
+
+.cenarios { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .9rem; }
+.cenario {
+  font-family: var(--mono); font-size: .72rem; color: var(--ink);
+  background: var(--papel); border: 1px solid var(--linha); border-radius: 100px;
+  padding: .4rem .8rem; cursor: pointer;
+  transition: border-color .2s ease, background-color .2s ease;
+}
+.cenario:hover { border-color: var(--laranja-sinal); }
+.cenario[aria-pressed="true"] { background: var(--laranja-sinal); color: #fff; border-color: var(--laranja-sinal); }
 .fontes { list-style: none; margin: .7rem 0 0; padding: 0; display: grid; gap: .5rem; font-size: .84rem; }
-.fontes li { display: flex; gap: .6rem; }
-.fontes li::before { content: "§"; color: var(--laranja-sinal); font-family: var(--mono); flex: none; }
+/* Bloco, não flex: com flex cada <strong> vira um item e o texto quebra em colunas. */
+.fontes li { display: block; position: relative; padding-left: 1.3rem; line-height: 1.5; }
+.fontes li::before {
+  content: "§"; color: var(--laranja-sinal); font-family: var(--mono);
+  position: absolute; left: 0; top: 0;
+}
 
 .rodape { background: var(--tinta); color: #c9adc4; padding-block: 2.2rem; margin-top: 2.5rem; font-size: .82rem; }
 .rodape a { color: var(--laranja-cena); }
@@ -369,22 +390,53 @@ tr.marco th[scope="row"]::after { content: " ●"; color: var(--laranja-sinal); 
 
           <h3>Alíquota de referência</h3>
           <p>
-            A alíquota de referência da CBS e do IBS é fixada por resolução do Senado, com base em
-            cálculo do Tribunal de Contas da União, e <strong>não estava definida em caráter
-            definitivo quando esta ferramenta foi escrita</strong>. O valor abaixo é a estimativa
-            que circulou publicamente durante a tramitação. Troque pelo número vigente.
+            A alíquota de referência é fixada por <strong>resolução do Senado</strong>, com base em
+            cálculo do Tribunal de Contas da União. <strong>Ela ainda não foi fixada</strong>
+            (situação conferida em 23/11/2026). O Senado tem até <strong>15 de dezembro de
+            2026</strong> para publicar a resolução; se passar de 22 de dezembro sem deliberação,
+            vale o cálculo do TCU enquanto isso não acontecer.
+          </p>
+          <p>
+            Por isso há mais de um número circulando, e eles não batem entre si. Os dois que
+            valem acompanhar:
+          </p>
+          <ul class="fontes">
+            <li><strong>Resolução CGIBS nº 14/2026</strong> — premissa orçamentária, sem caráter
+            definitivo: IBS 18,7% + CBS 9,21% = <strong>27,91%</strong>. É o padrão carregado aqui
+            por ser o mais recente e o único que cobre os dois tributos.</li>
+            <li><strong>Cálculo do TCU de 28/10/2026</strong> — CBS de referência para 2027 em
+            <strong>11,3%</strong> (11,2% cobrados, com a redução de 0,1 ponto prevista para 2027
+            e 2028). É o número que passa a valer sozinho se o Senado perder o prazo.</li>
+          </ul>
+          <p class="nota-fonte">
+            Repare que 27,91% <strong>passa da trava de 26,5%</strong> prevista em lei. Se a
+            alíquota de referência superar esse teto, a lei prevê revisão — mais um motivo para
+            tratar qualquer número aqui como provisório.
           </p>
           <div class="pares">
             <div class="campo">
               <label for="cbs">CBS — federal (%)</label>
-              <input type="number" id="cbs" value="8.8" min="0" max="40" step="0.01" inputmode="decimal">
+              <input type="number" id="cbs" value="9.21" min="0" max="40" step="0.01" inputmode="decimal">
             </div>
             <div class="campo">
               <label for="ibs">IBS — estadual e municipal (%)</label>
-              <input type="number" id="ibs" value="17.7" min="0" max="40" step="0.01" inputmode="decimal">
+              <input type="number" id="ibs" value="18.7" min="0" max="40" step="0.01" inputmode="decimal">
             </div>
           </div>
+          <div class="cenarios">
+            <button type="button" class="cenario" data-cbs="9.21" data-ibs="18.7">CGIBS 14/2026 — 27,91%</button>
+            <button type="button" class="cenario" data-cbs="11.3" data-ibs="18.7">TCU — CBS 11,3%</button>
+            <button type="button" class="cenario" data-cbs="8.8" data-ibs="17.7">Trava da lei — 26,5%</button>
+          </div>
           <p class="nota-fonte" id="nota-total"></p>
+          <p class="nota-fonte">
+            Fontes conferidas em 23/11/2026:
+            <a href="https://www12.senado.leg.br/noticias/materias/2026/10/26/reforma-tributaria-aliquota-da-cbs-avanca-nesta-semana" target="_blank" rel="noopener">Senado Notícias</a>,
+            <a href="https://www.taxgroup.com.br/intelligence/aliquota-ibs-cbs/" target="_blank" rel="noopener">Tax Group</a> e
+            <a href="https://www.barbieriadvogados.com/lc-214/" target="_blank" rel="noopener">guia da LC 214/2025</a>.
+            Antes de decidir qualquer coisa, confira o Diário Oficial: pode ter saído resolução
+            depois desta data.
+          </p>
 
           <h3>Cronograma da transição</h3>
           <p>
@@ -651,7 +703,27 @@ tr.marco th[scope="row"]::after { content: " ●"; color: var(--laranja-sinal); 
     pintarResumo(r);
     pintarTabela(r);
     pintarGrafico(r);
+    marcarCenarioAtivo();
   }
+
+  /* Botões de cenário: carregam um par de alíquotas conhecido nos campos.
+     Não escondem nada — só poupam a digitação e deixam explícito que há mais
+     de um número em disputa enquanto o Senado não fixa a resolução. */
+  function marcarCenarioAtivo() {
+    var cbsAtual = num('cbs'), ibsAtual = num('ibs');
+    [].forEach.call(document.querySelectorAll('.cenario'), function (b) {
+      var igual = parseFloat(b.dataset.cbs) === cbsAtual && parseFloat(b.dataset.ibs) === ibsAtual;
+      b.setAttribute('aria-pressed', igual ? 'true' : 'false');
+    });
+  }
+  [].forEach.call(document.querySelectorAll('.cenario'), function (b) {
+    b.setAttribute('aria-pressed', 'false');
+    b.addEventListener('click', function () {
+      $('cbs').value = b.dataset.cbs;
+      $('ibs').value = b.dataset.ibs;
+      atualizar();
+    });
+  });
 
   document.addEventListener('input', atualizar);
   document.addEventListener('change', atualizar);
