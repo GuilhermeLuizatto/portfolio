@@ -1,0 +1,1699 @@
+<!doctype html>
+<html lang="pt-BR" class="no-js" data-ambicao="elevado">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ===========================================================================
+     FALTA UMA COISA ANTES DE PUBLICAR:
+     https://GuilhermeLuizatto.github.io/portfolio/lp-servicos/ (abaixo, no canonical e no og:url) pelo endereço real da
+     página. Ex.: https://GuilhermeLuizatto.github.io/portfolio/lp-servicos/
+
+     Contatos já preenchidos: WhatsApp (13 99664-9260), e-mail e GitHub, na
+     seção #contato e no rodapé. O botão flutuante de WhatsApp continua
+     desligado de propósito — ver o comentário no fim do arquivo.
+
+     Lista completa de pendências em ../PENDENCIAS-VALIDACAO.md
+     =========================================================================== -->
+
+<title>Guilherme — Desenvolvedor web: landing pages, automações e dashboards</title>
+<meta name="description" content="Desenvolvedor web com formação em TI. Landing pages, automações, dashboards e manutenção de sistemas, com escopo escrito, código testado e nenhum dado inventado na página. Autor do Atendara, SaaS próprio em produção.">
+<link rel="canonical" href="https://GuilhermeLuizatto.github.io/portfolio/lp-servicos/">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Guilherme — Desenvolvedor web">
+<meta property="og:title" content="Landing pages e sistemas web feitos por quem também mantém o que constrói">
+<meta property="og:description" content="Landing pages, automações, dashboards e manutenção. Escopo escrito, código testado, nada inventado na página.">
+<meta property="og:url" content="https://GuilhermeLuizatto.github.io/portfolio/lp-servicos/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Landing pages e sistemas web feitos por quem também mantém o que constrói">
+<meta name="twitter:description" content="Landing pages, automações, dashboards e manutenção. Escopo escrito, código testado, nada inventado na página.">
+<!-- og:image omitido de propósito: não existe imagem de compartilhamento ainda (ver pendências). -->
+
+<meta name="theme-color" content="#280e25">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23280e25'/%3E%3Cpath d='M9 11.5 13.5 16 9 20.5' fill='none' stroke='%23ff9754' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M17 21h6' stroke='%23ff9754' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Sans:ital,wght@0,400..600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<script>(function(d){d.classList.remove('no-js');try{if(localStorage.getItem('mk-pausado')==='1')d.classList.add('mk-pausado')}catch(e){}var r=matchMedia('(prefers-reduced-motion: reduce)').matches,s=navigator.connection&&navigator.connection.saveData;if(!r&&!s){d.classList.add('mk-motion');setTimeout(function(){if(!window.__mkReady)d.classList.remove('mk-motion')},3000)}})(document.documentElement)</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Guilherme Luizatto — Desenvolvimento web",
+  "description": "Desenvolvimento de landing pages, automações, dashboards e manutenção de sistemas web.",
+  "areaServed": { "@type": "Country", "name": "Brasil" },
+  "availableLanguage": ["pt-BR", "en"],
+  "email": "guilhermeluizatto@gmail.com",
+  "telephone": "+55-13-99664-9260",
+  "founder": {
+    "@type": "Person",
+    "name": "Guilherme Luizatto",
+    "jobTitle": "Desenvolvedor web",
+    "sameAs": ["https://github.com/GuilhermeLuizatto"],
+    "knowsAbout": [
+      "Landing page", "HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js",
+      "Astro", "Node.js", "Firebase", "Firestore", "Cloud Functions", "n8n",
+      "Integração de API", "Acessibilidade web", "SEO técnico"
+    ],
+    "owns": {
+      "@type": "SoftwareApplication",
+      "name": "Atendara",
+      "applicationCategory": "BusinessApplication",
+      "url": "https://atendara.app",
+      "operatingSystem": "Web"
+    }
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Serviços",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Landing page e site de uma página" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Automação e integração de sistemas" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dashboard e painel administrativo" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Manutenção e correção de sistemas web" } }
+    ]
+  }
+}
+</script>
+
+<style>
+/*
+ * motion-kit.css — estados iniciais e finais do motion kit (ref. 12).
+ * Copie para o projeto junto com motion-kit.js. Os estados "escondidos" só valem com a classe
+ * `mk-motion` no <html>, que o snippet do <head> põe apenas quando o movimento é permitido.
+ * Sem JS, com redução de movimento ou economia de dados: tudo aparece no estado final.
+ */
+/*
+ * Tokens de movimento (ref. 12 §2.1): troque os VALORES por projeto, nunca crie curvas ou durações
+ * soltas fora deles. 2–3 curvas, 3 durações, 1 distância, 1 stagger. `--mk-ease-sig` é opcional e
+ * só vale para o momento assinatura.
+ */
+:root {
+  --mk-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --mk-ease-inout: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --mk-ease-sig: var(--mk-ease-out);
+  --mk-dur-ui: 0.24s;
+  --mk-dur-reveal: 0.9s;
+  --mk-dur-scene: 1.2s;
+  --mk-rise: 40px;
+  --mk-stagger: 0.06s;
+  /* aliases da v2.1 (não use em código novo) */
+  --mk-ease: var(--mk-ease-out);
+  --mk-ease-in-out: var(--mk-ease-inout);
+}
+
+/* ---------- Cenas de cor: o kit troca html[data-mk-scene] conforme a seção no centro da tela ---------- */
+html[data-mk-scene] body {
+  transition: background-color var(--mk-dur-scene) var(--mk-ease-inout), color var(--mk-dur-scene) var(--mk-ease-inout);
+}
+
+/* ---------- Revelações ---------- */
+.mk-motion [data-mk="fade"] { opacity: 0; transition: opacity var(--mk-dur-reveal) var(--mk-ease-out); }
+.mk-motion [data-mk="rise"] {
+  opacity: 0; transform: translate3d(0, var(--mk-rise), 0);
+  transition: opacity var(--mk-dur-reveal) var(--mk-ease-out), transform var(--mk-dur-reveal) var(--mk-ease-out);
+}
+.mk-motion [data-mk="scale"] {
+  opacity: 0; transform: scale(0.94);
+  transition: opacity var(--mk-dur-reveal) var(--mk-ease-out), transform var(--mk-dur-reveal) var(--mk-ease-out);
+}
+.mk-motion [data-mk="clip"] {
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path var(--mk-dur-scene) var(--mk-ease-inout);
+}
+.mk-motion [data-mk="clip-x"] {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path var(--mk-dur-scene) var(--mk-ease-inout);
+}
+/* Imagem que "carrega" com máscara e zoom (ref. 12 §4.2) */
+.mk-motion [data-mk="img-reveal"] {
+  clip-path: inset(14% 10% 14% 10% round 28px);
+  transition: clip-path var(--mk-dur-scene) var(--mk-ease-inout);
+}
+.mk-motion [data-mk="img-reveal"] img,
+.mk-motion [data-mk="img-reveal"] video { transform: scale(1.22); transition: transform calc(var(--mk-dur-scene) * 1.35) var(--mk-ease-out); }
+
+.mk-motion [data-mk].mk-in { opacity: 1; transform: none; clip-path: inset(0 0 0 0 round 0); }
+.mk-motion [data-mk="img-reveal"].mk-in img,
+.mk-motion [data-mk="img-reveal"].mk-in video { transform: scale(1); }
+
+/* Texto dividido em palavras/letras com máscara (o kit cria .mk-word > .mk-piece) */
+.mk-word { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+.mk-piece { display: inline-block; }
+.mk-motion [data-mk^="split"] .mk-piece {
+  transform: translate3d(0, 110%, 0);
+  transition: transform var(--mk-dur-reveal) var(--mk-ease-out);
+  transition-delay: calc(var(--mk-i, 0) * var(--mk-stagger));
+}
+.mk-motion [data-mk^="split"].mk-in .mk-piece { transform: none; }
+
+/* Filhos em cascata: <ul data-mk-stagger> com filhos data-mk */
+.mk-motion [data-mk-stagger] > [data-mk] { transition-delay: calc(var(--mk-i, 0) * var(--mk-stagger)); }
+
+/* ---------- Preloader ---------- */
+[data-mk-preloader] { position: fixed; inset: 0; z-index: 9999; display: none; }
+.mk-motion [data-mk-preloader] { display: grid; place-items: center; clip-path: inset(0 0 0 0); transition: clip-path var(--mk-dur-reveal) var(--mk-ease-inout); }
+.mk-motion.mk-loaded [data-mk-preloader] { clip-path: inset(0 0 100% 0); pointer-events: none; }
+
+/* ---------- Marquee (pausa no hover/foco, no botão e com redução de movimento: WCAG 2.2.2) ---------- */
+[data-mk-marquee] { overflow: hidden; }
+[data-mk-marquee] > .mk-marquee-track { display: flex; width: max-content; }
+.mk-motion [data-mk-marquee] > .mk-marquee-track { animation: mk-marquee var(--mk-marquee-dur, 28s) linear infinite; }
+.mk-motion [data-mk-marquee]:hover > .mk-marquee-track,
+.mk-motion [data-mk-marquee]:focus-within > .mk-marquee-track,
+.mk-motion [data-mk-marquee].mk-paused > .mk-marquee-track { animation-play-state: paused; }
+@keyframes mk-marquee { to { transform: translate3d(-50%, 0, 0); } }
+
+/* ---------- Rolagem horizontal fixada (só desktop com movimento; senão vira carrossel com snap) ---------- */
+[data-mk-track] { display: flex; gap: var(--mk-track-gap, 24px); overflow-x: auto; scroll-snap-type: x mandatory; }
+[data-mk-track] > * { scroll-snap-align: start; flex: 0 0 auto; }
+.mk-h-on [data-mk-sticky] { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: flex; align-items: center; }
+.mk-h-on [data-mk-track] { overflow: visible; scroll-snap-type: none; will-change: transform; }
+
+/* ---------- Pilha de cartões (CSS puro) ---------- */
+[data-mk-stack] > * { position: sticky; top: calc(var(--mk-stack-top, 96px) + var(--mk-i, 0) * 16px); }
+
+/* ---------- Microinterações ---------- */
+[data-mk-magnetic], [data-mk-tilt] { transition: transform calc(var(--mk-dur-ui) * 2) var(--mk-ease-out); }
+[data-mk-tilt] { transform-style: preserve-3d; }
+.mk-cursor {
+  position: fixed; top: 0; left: 0; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+  background: var(--mk-cursor, currentColor); pointer-events: none; z-index: 9998; mix-blend-mode: difference;
+  transition: width var(--mk-dur-ui) var(--mk-ease-out), height var(--mk-dur-ui) var(--mk-ease-out), margin var(--mk-dur-ui) var(--mk-ease-out), opacity var(--mk-dur-ui);
+}
+.mk-cursor.mk-hover { width: 56px; height: 56px; margin: -28px 0 0 -28px; }
+[data-mk-progress] { transform-origin: 0 50%; transform: scaleX(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-mk-progress] { transform: none; display: none; }
+}
+
+/* ---------- Ligado à rolagem sem JS: CSS scroll-driven (ref. 13 §R1 e §S1) ----------
+ * data-mk-view="rise|scale|wipe|drift". O progresso segue a posição do elemento na tela (volta ao rolar
+ * para cima, como scrub). Sem suporte a animation-timeline, ou sem movimento, o elemento fica no estado final.
+ * Para "revela uma vez com duração fixa", use data-mk (IntersectionObserver) em vez deste. */
+@supports (animation-timeline: view()) {
+  .mk-motion [data-mk-view] { animation: linear both; animation-timeline: view(); animation-range: entry 0% entry 70%; }
+  .mk-motion [data-mk-view="rise"]  { animation-name: mk-v-rise; }
+  .mk-motion [data-mk-view="scale"] { animation-name: mk-v-scale; }
+  .mk-motion [data-mk-view="wipe"]  { animation-name: mk-v-wipe; }
+  .mk-motion [data-mk-view="drift"] { animation-name: mk-v-drift; animation-range: cover 0% cover 100%; }
+}
+@keyframes mk-v-rise  { from { opacity: 0; transform: translate3d(0, var(--mk-rise), 0); } }
+@keyframes mk-v-scale { from { opacity: 0; transform: scale(0.9); } }
+@keyframes mk-v-wipe  { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes mk-v-drift { from { transform: translate3d(0, calc(var(--mk-drift, 0.15) * 40vh), 0); } to { transform: translate3d(0, calc(var(--mk-drift, 0.15) * -40vh), 0); } }
+
+/* ---------- Loops ambientes (flutuar, girar, bolhas): marque o contêiner com data-mk-loop ----------
+ * Sem movimento permitido, sem JS ou fora da tela, os loops param. Dessincronize com delays negativos
+ * (ex.: animation-delay: -4s) em vez de começar todos juntos. */
+html:not(.mk-motion) [data-mk-loop], html:not(.mk-motion) [data-mk-loop] * { animation: none !important; }
+.mk-offscreen, .mk-offscreen * { animation-play-state: paused !important; }
+/* Pausa global (botão [data-mk-pausar]): para loops e marquees; o botão só aparece com movimento ligado. */
+.mk-pausado [data-mk-loop], .mk-pausado [data-mk-loop] *,
+.mk-pausado [data-mk-marquee] > .mk-marquee-track { animation-play-state: paused !important; }
+html:not(.mk-motion) [data-mk-pausar] { display: none; }
+
+/* ---------- Sem JS: <html class="no-js"> (o snippet tira a classe) ----------
+ * O kit não roda, então as cenas não trocam. Com as cores das cenas em --mk-bg/--mk-ink no seletor duplo
+ * (README), cada seção pinta a própria cena. */
+.no-js [data-mk-scene] { background: var(--mk-bg); color: var(--mk-ink); }
+/* =========================================================================
+   Tokens do projeto — paleta em OKLCH (hex conferido) e movimento.
+   Cenas de cor: tinta -> papel -> sinal -> tinta ("começa na marca").
+   ========================================================================= */
+:root {
+  /* cor */
+  --tinta: #280e25;
+  --tinta-2: #351a32;
+  --papel: #f9f0f8;
+  --papel-2: #eee2ec;
+  --laranja-cena: #ff9754;
+  --laranja-sinal: #e74f00;
+  --areia: #e7d4bf;
+  --ink-claro: #f9eef8;
+  --ink-escuro: #291226;
+
+  /* movimento (sobrescreve os padrões do kit) */
+  --mk-ease-out: cubic-bezier(.16, 1, .3, 1);
+  --mk-ease-inout: cubic-bezier(.645, .045, .355, 1);
+  --mk-ease-sig: cubic-bezier(.34, 1.28, .42, 1);
+  --mk-dur-ui: .22s;
+  --mk-dur-reveal: .78s;
+  --mk-dur-scene: 1.25s;
+  --mk-rise: 34px;
+  --mk-stagger: .07s;
+
+  /* tipografia */
+  --display: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --texto: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --t-xs: .78rem;
+  --t-s: .92rem;
+  --t-m: clamp(1rem, .96rem + .2vw, 1.12rem);
+  --t-l: clamp(1.18rem, 1.06rem + .6vw, 1.5rem);
+  --t-xl: clamp(1.6rem, 1.3rem + 1.5vw, 2.4rem);
+  --t-2xl: clamp(2.1rem, 1.5rem + 3vw, 3.6rem);
+  --t-3xl: clamp(2.6rem, 1.6rem + 5vw, 5.4rem);
+
+  /* espaço e forma */
+  --gutter: clamp(1.15rem, .8rem + 2vw, 2.5rem);
+  --max: 1180px;
+  --raio: 14px;
+  --secao-y: clamp(4.5rem, 3rem + 7vw, 9rem);
+
+  /* cena inicial (hero) */
+  --mk-bg: var(--tinta);
+  --mk-ink: var(--ink-claro);
+}
+
+/* ---- Cenas de cor. Seletor duplo: com JS a cena vale para a página;
+        sem JS, cada seção pinta a própria. ---- */
+:is(html[data-mk-scene="tinta"], .no-js [data-mk-scene="tinta"]) {
+  --mk-bg: var(--tinta);
+  --mk-ink: var(--ink-claro);
+  --acento: var(--laranja-cena);
+  --cartao: var(--tinta-2);
+  --linha: #5a3a55;
+  --suave: #c9adc4;
+  --btn-bg: var(--laranja-cena);
+  --btn-ink: var(--tinta);
+  --foco: var(--laranja-cena);
+}
+:is(html[data-mk-scene="papel"], .no-js [data-mk-scene="papel"]) {
+  --mk-bg: var(--papel);
+  --mk-ink: var(--ink-escuro);
+  --acento: var(--laranja-sinal);
+  --cartao: var(--papel-2);
+  --linha: #d3bdd0;
+  --suave: #6b5168;
+  --btn-bg: var(--laranja-sinal);
+  --btn-ink: var(--tinta);
+  --foco: var(--laranja-sinal);
+}
+:is(html[data-mk-scene="sinal"], .no-js [data-mk-scene="sinal"]) {
+  --mk-bg: var(--laranja-cena);
+  --mk-ink: var(--tinta);
+  --acento: var(--tinta);
+  --cartao: #ffb183;
+  --linha: #b45a1e;
+  --suave: #4b2412;
+  --btn-bg: var(--tinta);
+  --btn-ink: var(--papel);
+  --foco: var(--tinta);
+}
+
+/* =========================================================================
+   Base
+   ========================================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  font-family: var(--texto);
+  font-size: var(--t-m);
+  line-height: 1.6;
+  background: var(--mk-bg);
+  color: var(--mk-ink);
+  -webkit-font-smoothing: antialiased;
+}
+/* Sem JS o kit não troca a cena: cada seção pinta a própria. */
+.no-js [data-mk-scene] { background: var(--mk-bg); color: var(--mk-ink); }
+
+main { overflow-x: clip; }
+
+h1, h2, h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -.025em;
+  margin: 0;
+  text-wrap: balance;
+}
+p { margin: 0; }
+a { color: inherit; }
+img, svg { max-width: 100%; }
+
+::selection { background: var(--acento); color: var(--mk-bg); }
+
+:focus-visible {
+  outline: 3px solid var(--foco);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.pular {
+  position: absolute; left: -9999px; top: 0; z-index: 100;
+  background: var(--tinta); color: var(--ink-claro);
+  padding: .8rem 1.1rem; border-radius: 0 0 var(--raio) 0;
+}
+.pular:focus { left: 0; }
+
+.env { width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: var(--gutter); }
+.secao { padding-block: var(--secao-y); position: relative; }
+
+.rotulo {
+  font-family: var(--mono);
+  font-size: var(--t-xs);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--acento);
+  display: flex; align-items: center; gap: .6rem;
+  margin: 0 0 1.4rem;
+}
+.rotulo::before {
+  content: ""; width: 1.8rem; height: 1px; background: currentColor; flex: none;
+}
+
+.prosa { max-width: 62ch; }
+.prosa + .prosa { margin-top: 1rem; }
+.suave { color: var(--suave); }
+
+/* ---- Botões (sistema de hover U1) ---- */
+.btn {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-family: var(--texto); font-size: var(--t-m); font-weight: 600;
+  padding: .95rem 1.5rem;
+  border: 2px solid transparent; border-radius: 100px;
+  background: var(--btn-bg); color: var(--btn-ink);
+  text-decoration: none; cursor: pointer;
+  transition: transform var(--mk-dur-ui) var(--mk-ease-out),
+              box-shadow var(--mk-dur-ui) var(--mk-ease-out),
+              background-color var(--mk-dur-ui) var(--mk-ease-out);
+}
+.btn .seta { transition: transform var(--mk-dur-ui) var(--mk-ease-out); }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 0 -4px var(--linha); }
+.btn:hover .seta { transform: translateX(4px); }
+.btn:active { transform: translateY(0); }
+.btn--fantasma {
+  background: transparent; color: var(--mk-ink); border-color: var(--linha);
+}
+.btn--fantasma:hover { border-color: var(--acento); box-shadow: none; }
+
+/* ---- Link com sublinhado que se desenha (U1) ---- */
+.link {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%;
+  transition: background-size var(--mk-dur-ui) var(--mk-ease-out);
+  padding-bottom: 2px;
+}
+.link:hover, .link:focus-visible { background-size: 100% 1.5px; }
+/* Link dentro de texto corrido precisa ser distinguível sem depender da cor
+   nem do hover (WCAG 1.4.1): sublinhado em repouso, que engrossa no hover. */
+p .link { background-size: 100% 1px; color: var(--acento); }
+p .link:hover, p .link:focus-visible { background-size: 100% 2px; }
+
+/* =========================================================================
+   Cabeçalho
+   ========================================================================= */
+.topo {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--mk-bg);
+  border-bottom: 1px solid var(--linha);
+  transition: background-color var(--mk-dur-scene) var(--mk-ease-inout);
+}
+/* O desfoque atrás do cabeçalho custa um repaint por quadro de rolagem.
+   No celular ele derruba o FPS, então só entra a partir do tablet
+   (mobile mais leve que o desktop, ref. 12 §7). */
+@media (min-width: 768px) {
+  .topo {
+    background: color-mix(in oklab, var(--mk-bg) 86%, transparent);
+    backdrop-filter: blur(10px);
+  }
+}
+.topo__env {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  min-height: 62px;
+}
+.marca {
+  font-family: var(--mono); font-size: var(--t-s); font-weight: 500;
+  letter-spacing: -.01em; text-decoration: none;
+  display: inline-flex; align-items: center; gap: .5rem;
+}
+.marca b { font-weight: 500; color: var(--acento); }
+.topo nav { display: none; }
+.topo nav ul { display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0; font-size: var(--t-s); }
+@media (min-width: 880px) { .topo nav { display: block; } }
+
+/* =========================================================================
+   Hero
+   ========================================================================= */
+.hero { padding-block: clamp(3.5rem, 2rem + 9vw, 7.5rem) var(--secao-y); }
+.hero h1 { font-size: var(--t-3xl); max-width: 19ch; font-weight: 800; }
+.hero h1 em { font-style: normal; color: var(--acento); }
+.hero__sub { font-size: var(--t-l); max-width: 54ch; margin-top: 1.6rem; line-height: 1.45; }
+.hero__acoes { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2.2rem; }
+.hero__nota {
+  font-family: var(--mono); font-size: var(--t-xs); color: var(--suave);
+  margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: .4rem 1rem;
+}
+.hero__nota span { display: inline-flex; align-items: center; gap: .45rem; }
+.hero__nota span::before {
+  content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--acento);
+}
+.hero__pilha {
+  margin-top: clamp(3rem, 2rem + 4vw, 5rem);
+  display: grid; gap: 1px; background: var(--linha);
+  border: 1px solid var(--linha); border-radius: var(--raio); overflow: hidden;
+}
+@media (min-width: 760px) { .hero__pilha { grid-template-columns: repeat(3, 1fr); } }
+.hero__pilha div { background: var(--mk-bg); padding: 1.3rem 1.4rem; }
+.hero__pilha dt { font-family: var(--mono); font-size: var(--t-xs); color: var(--acento); letter-spacing: .06em; text-transform: uppercase; }
+.hero__pilha dd { margin: .5rem 0 0; font-size: var(--t-s); line-height: 1.5; }
+
+/* =========================================================================
+   Grades e cartões
+   ========================================================================= */
+.grade { display: grid; gap: 1rem; }
+@media (min-width: 720px) { .grade--2 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 720px) { .grade--3 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1040px) { .grade--3 { grid-template-columns: repeat(3, 1fr); } }
+
+.cartao {
+  background: var(--cartao);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  padding: clamp(1.3rem, 1rem + 1vw, 2rem);
+  transition: transform var(--mk-dur-ui) var(--mk-ease-out),
+              border-color var(--mk-dur-ui) var(--mk-ease-out);
+}
+.cartao h3 { font-size: var(--t-l); margin-bottom: .7rem; }
+.cartao p { font-size: var(--t-s); line-height: 1.55; }
+.cartao--links:hover { transform: translateY(-3px); border-color: var(--acento); }
+
+.cartao__num {
+  font-family: var(--mono); font-size: var(--t-xs); color: var(--acento);
+  display: block; margin-bottom: .9rem; letter-spacing: .06em;
+}
+.lista { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .5rem; font-size: var(--t-s); }
+.lista li { display: flex; gap: .6rem; align-items: flex-start; line-height: 1.45; }
+.lista li::before {
+  content: ""; flex: none; width: .55rem; height: .55rem; margin-top: .42rem;
+  border-radius: 2px; background: var(--acento);
+}
+
+.naoe {
+  margin-top: 2.5rem; border-left: 3px solid var(--acento);
+  padding: .2rem 0 .2rem 1.4rem;
+}
+.naoe h3 { font-size: var(--t-xl); margin-bottom: .9rem; }
+.naoe ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; }
+.naoe li { display: flex; gap: .7rem; font-size: var(--t-s); line-height: 1.5; }
+.naoe li::before { content: "—"; color: var(--acento); flex: none; }
+
+/* =========================================================================
+   ASSINATURA (S6 + S1): palco fixo, espinha que se desenha, leque dos testes
+   ========================================================================= */
+.metodo { --passos: 6; }
+.metodo h2 { font-size: var(--t-2xl); max-width: 26ch; }
+.metodo__intro { margin-top: 1.1rem; }
+
+/* Sem JS / com redução de movimento: lista vertical completa. */
+.metodo__etapas { display: grid; gap: 1rem; margin-top: 2.5rem; }
+.metodo__indice, .metodo__espinha { display: none; }
+
+/* Com movimento: palco fixo e uma etapa por vez. */
+.mk-motion .metodo { height: calc(100svh + (var(--passos) * 48svh)); }
+.mk-motion .metodo__palco {
+  position: sticky; top: 0; min-height: 100svh;
+  display: grid; align-content: center; padding-block: 5rem 2rem;
+}
+.mk-motion .metodo__espinha { display: block; margin: 2rem 0 1.6rem; }
+.mk-motion .metodo__indice { display: flex; }
+.mk-motion .metodo__etapas { margin-top: 0; }
+.mk-motion .etapa {
+  grid-area: 1 / 1;
+  align-self: start;            /* o cartão abraça o conteúdo em vez de esticar até a etapa mais alta */
+  opacity: 0; transform: translate3d(0, 20px, 0);
+  transition: opacity var(--mk-dur-reveal) var(--mk-ease-out),
+              transform var(--mk-dur-reveal) var(--mk-ease-sig);
+}
+.mk-motion .etapa.on { opacity: 1; transform: none; }
+
+.etapa {
+  border: 1px solid var(--linha); border-radius: var(--raio);
+  padding: clamp(1.3rem, 1rem + 1.4vw, 2.2rem); background: var(--cartao);
+  max-width: 54rem;
+}
+.etapa__topo { display: flex; align-items: baseline; gap: .9rem; flex-wrap: wrap; }
+.etapa__n { font-family: var(--mono); font-size: var(--t-xs); color: var(--acento); letter-spacing: .08em; }
+.etapa h3 { font-size: var(--t-xl); }
+.etapa p { margin-top: .9rem; max-width: 56ch; font-size: var(--t-s); line-height: 1.55; }
+.etapa__saida {
+  margin-top: 1.2rem; padding-top: .9rem; border-top: 1px solid var(--linha);
+  font-family: var(--mono); font-size: var(--t-xs); line-height: 1.6;
+  color: var(--suave); display: block;
+}
+.etapa__saida b {
+  color: var(--mk-ink); font-weight: 500;
+  display: block; margin-bottom: .25rem; letter-spacing: .04em; text-transform: uppercase;
+}
+
+/* espinha: a linha desenha com a rolagem (data-mk-draw), os nós travam */
+.espinha { width: 100%; height: auto; overflow: visible; }
+.espinha__linha { stroke: var(--linha); stroke-width: 2; fill: none; }
+.espinha__fio { stroke: var(--acento); stroke-width: 2.5; fill: none; stroke-linecap: round; }
+.espinha__no { fill: var(--mk-bg); stroke: var(--linha); stroke-width: 2; transition: fill var(--mk-dur-ui) var(--mk-ease-out), stroke var(--mk-dur-ui) var(--mk-ease-out), r var(--mk-dur-ui) var(--mk-ease-sig); }
+.espinha__no.on { fill: var(--acento); stroke: var(--acento); }
+
+.metodo__indice { list-style: none; margin: 0; padding: 0; gap: .4rem; flex-wrap: wrap; font-family: var(--mono); font-size: var(--t-xs); }
+.metodo__indice li { color: var(--suave); opacity: .55; transition: opacity var(--mk-dur-ui) var(--mk-ease-out), color var(--mk-dur-ui) var(--mk-ease-out); }
+.metodo__indice li.on { opacity: 1; color: var(--mk-ink); }
+.metodo__indice li + li::before { content: "/"; color: var(--linha); margin: 0 .4rem 0 0; }
+
+/* leque dos 4 testes, dentro da etapa 6 */
+.leque { display: grid; gap: .55rem; margin-top: 1.2rem; }
+@media (min-width: 620px) { .leque { grid-template-columns: repeat(2, 1fr); } }
+.leque li {
+  list-style: none; display: flex; gap: .55rem; align-items: center;
+  font-family: var(--mono); font-size: var(--t-xs); line-height: 1.4;
+  border: 1px solid var(--linha); border-radius: 8px; padding: .6rem .7rem;
+}
+.leque svg { flex: none; }
+.leque__traco { stroke: var(--acento); stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.mk-motion .etapa .leque__traco { stroke-dasharray: 40; stroke-dashoffset: 40; }
+.mk-motion .etapa.on .leque__traco {
+  animation: traca .5s var(--mk-ease-out) forwards;
+  animation-delay: calc(.22s + var(--mk-i, 0) * var(--mk-stagger));
+}
+@keyframes traca { to { stroke-dashoffset: 0; } }
+
+/* =========================================================================
+   Faixa "nada inventado" (cena sinal, S4 wipe + MQ1 marquee)
+   ========================================================================= */
+.regra { padding-block: clamp(5rem, 3rem + 9vw, 10rem); }
+.regra h2 { font-size: var(--t-3xl); max-width: 17ch; font-weight: 800; }
+.regra__itens { margin-top: 2.6rem; display: grid; gap: 1.2rem; max-width: 70ch; }
+.regra__itens div { border-top: 2px solid var(--linha); padding-top: 1rem; }
+.regra__itens h3 { font-family: var(--mono); font-weight: 500; font-size: var(--t-s); letter-spacing: .04em; text-transform: uppercase; }
+.regra__itens p { margin-top: .5rem; font-size: var(--t-s); line-height: 1.55; max-width: 58ch; }
+
+.faixa { margin-top: clamp(3rem, 2rem + 4vw, 5rem); border-block: 2px solid var(--linha); padding-block: .9rem; }
+.faixa__item {
+  font-family: var(--display); font-size: clamp(1.4rem, 1rem + 3vw, 2.6rem);
+  font-weight: 700; letter-spacing: -.02em; margin-right: 2.5rem;
+  display: inline-flex; align-items: center; gap: 2.5rem; white-space: nowrap;
+}
+.faixa__item::after { content: ""; width: .5rem; height: .5rem; border-radius: 50%; background: var(--acento); flex: none; }
+
+/* =========================================================================
+   O que eu posso te mostrar
+   ========================================================================= */
+.mostrar h2 { font-size: var(--t-2xl); max-width: 24ch; }
+.mostrar__aviso {
+  margin-top: 1.2rem; font-size: var(--t-l); max-width: 50ch; line-height: 1.45;
+}
+.mostrar__grade { margin-top: 2.6rem; }
+.prova__tag {
+  font-family: var(--mono); font-size: var(--t-xs); color: var(--acento);
+  letter-spacing: .06em; text-transform: uppercase;
+}
+.prova__stack {
+  margin-top: 1.1rem; display: flex; flex-wrap: wrap; gap: .35rem;
+  font-family: var(--mono); font-size: var(--t-xs);
+}
+.prova__stack span { border: 1px solid var(--linha); border-radius: 100px; padding: .18rem .6rem; }
+.pendente {
+  font-family: var(--mono); font-size: var(--t-xs); color: var(--suave);
+  border: 1px dashed var(--linha); border-radius: 8px; padding: .55rem .7rem; margin-top: 1rem;
+}
+
+/* =========================================================================
+   FAQ
+   ========================================================================= */
+.faq h2 { font-size: var(--t-2xl); }
+.faq__lista { margin-top: 2.2rem; display: grid; gap: .1rem; }
+.faq details { border-top: 1px solid var(--linha); }
+.faq details:last-of-type { border-bottom: 1px solid var(--linha); }
+.faq summary {
+  cursor: pointer; list-style: none; padding: 1.15rem 2.5rem 1.15rem 0;
+  font-family: var(--display); font-size: var(--t-l); font-weight: 600;
+  position: relative; letter-spacing: -.015em;
+  transition: color var(--mk-dur-ui) var(--mk-ease-out);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary:hover { color: var(--acento); }
+.faq summary::after {
+  content: ""; position: absolute; right: .3rem; top: 50%;
+  width: 11px; height: 11px; margin-top: -8px;
+  border-right: 2px solid var(--acento); border-bottom: 2px solid var(--acento);
+  transform: rotate(45deg);
+  transition: transform var(--mk-dur-ui) var(--mk-ease-out);
+}
+.faq details[open] summary::after { transform: rotate(-135deg); margin-top: -3px; }
+.faq details p { padding-bottom: 1.3rem; max-width: 66ch; font-size: var(--t-s); line-height: 1.6; }
+.faq details p + p { margin-top: .8rem; }
+
+/* =========================================================================
+   Contato e rodapé
+   ========================================================================= */
+.contato { padding-block: clamp(5rem, 3rem + 8vw, 9rem); }
+.contato h2 { font-size: var(--t-3xl); max-width: 20ch; font-weight: 800; }
+.contato__sub { margin-top: 1.4rem; font-size: var(--t-l); max-width: 52ch; line-height: 1.45; }
+.canais { margin-top: 2.4rem; display: flex; flex-wrap: wrap; gap: .8rem; }
+
+.rodape { border-top: 1px solid var(--linha); padding-block: 2.2rem 2.6rem; font-size: var(--t-s); }
+.rodape__env { display: grid; gap: 1.4rem; }
+@media (min-width: 760px) { .rodape__env { grid-template-columns: 1fr auto; align-items: start; } }
+.rodape p { color: var(--suave); max-width: 52ch; font-size: var(--t-xs); line-height: 1.6; }
+.rodape__acoes { display: flex; flex-direction: column; gap: .7rem; align-items: flex-start; }
+.btn-pausa {
+  font-family: var(--mono); font-size: var(--t-xs); color: var(--mk-ink);
+  background: transparent; border: 1px solid var(--linha); border-radius: 100px;
+  padding: .5rem .9rem; cursor: pointer;
+  transition: border-color var(--mk-dur-ui) var(--mk-ease-out);
+}
+.btn-pausa:hover { border-color: var(--acento); }
+
+/* ---- Mobile mais leve que o desktop (ref. 12 §7) ----
+   A troca de cena repinta a viewport inteira enquanto a transição dura. No desktop
+   isso custa nada; num celular lento, medido com CPU 4x mais lenta, derrubava a
+   rolagem de 58 para 46 FPS. A cena continua trocando — só termina mais rápido. */
+@media (max-width: 767px) {
+  :root { --mk-dur-scene: 0.45s; }
+}
+
+/* ---- Redução de movimento: nada de deslocamento ou palco; a cor fica ---- */
+@media (prefers-reduced-motion: reduce) {
+  .btn:hover, .cartao--links:hover { transform: none; }
+}
+</style>
+</head>
+<body>
+
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="topo">
+  <div class="env topo__env">
+    <a class="marca" href="#inicio">guilherme <b>luizatto</b></a>
+    <nav aria-label="Seções">
+      <ul>
+        <li><a class="link" href="#servicos">Serviços</a></li>
+        <li><a class="link" href="#metodo">Como eu trabalho</a></li>
+        <li><a class="link" href="#mostrar">O que eu mostro</a></li>
+        <li><a class="link" href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- ================= HERO (cena tinta · L1) ================= -->
+  <section class="secao hero" id="inicio" data-mk-scene="tinta" data-pattern="L1">
+    <div class="env">
+      <p class="rotulo" data-mk="fade">Desenvolvimento web · Brasil</p>
+      <h1 data-mk="split-words">Landing pages e sistemas web feitos por quem também <em>mantém</em> o que constrói</h1>
+      <p class="hero__sub" data-mk="rise" data-mk-delay="0.15">
+        Sou o Guilherme, desenvolvedor com formação em TI. Construí e mantenho sozinho o
+        <a class="link" href="https://atendara.app" target="_blank" rel="noopener">Atendara</a>,
+        um SaaS de agendamento que está em produção. Trato o seu projeto com a mesma régua.
+      </p>
+      <!-- O CTA do hero NÃO é animado de propósito: ele precisa estar inteiro e clicável
+           imediatamente, inclusive em celular lento (ref. 12 §7). A sequência do hero
+           continua no rótulo, no título e no subtítulo. -->
+      <div class="hero__acoes">
+        <a class="btn" href="#contato">Falar comigo sobre o seu projeto <span class="seta" aria-hidden="true">→</span></a>
+        <a class="btn btn--fantasma" href="#metodo">Ver como eu trabalho</a>
+      </div>
+      <p class="hero__nota" data-mk="fade" data-mk-delay="0.4">
+        <span>Escopo escrito antes de qualquer cobrança</span>
+        <span>Entrega em partes, para você aprovar no caminho</span>
+        <span>O código fica seu</span>
+      </p>
+
+      <dl class="hero__pilha" data-mk-stagger>
+        <div data-mk="rise"><dt>Front-end</dt><dd>HTML, CSS, JavaScript, TypeScript, React, Next.js, Astro, GSAP</dd></div>
+        <div data-mk="rise"><dt>Back-end e dados</dt><dd>Node.js, Firebase, Firestore, Cloud Functions, APIs REST, webhooks</dd></div>
+        <div data-mk="rise"><dt>Automação</dt><dd>n8n, integrações de WhatsApp, Google Calendar, planilhas e pagamento</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ================= PROBLEMA (cena tinta · R2) ================= -->
+  <section class="secao" id="reconhece" data-mk-scene="tinta" aria-labelledby="t-reconhece">
+    <div class="env">
+      <p class="rotulo" data-mk="fade">O problema</p>
+      <h2 id="t-reconhece" style="font-size: var(--t-2xl); max-width: 30ch;" data-mk="rise">
+        Eu não entrego arquivo. Eu entrego algo que continua no ar.
+      </h2>
+      <p class="prosa suave" style="margin-top: 1.1rem;" data-mk="rise" data-mk-delay="0.1">
+        Se você já contratou desenvolvedor antes, provavelmente reconhece pelo menos uma destas três.
+      </p>
+
+      <div class="grade grade--3" style="margin-top: 2.6rem;" data-mk-stagger data-pattern="R2">
+        <article class="cartao" data-mk="rise">
+          <span class="cartao__num">01</span>
+          <h3>A página ficou bonita e não trouxe ninguém</h3>
+          <p>Template escolhido antes de alguém perguntar o que você vende e para quem.</p>
+          <ul class="lista">
+            <li>Aqui a estrutura vem da objeção de quem <em>não</em> compra de você — isso é a primeira pergunta do briefing, não a última.</li>
+          </ul>
+        </article>
+        <article class="cartao" data-mk="rise">
+          <span class="cartao__num">02</span>
+          <h3>O dev entregou e desapareceu</h3>
+          <p>Uma pasta de arquivos, nenhuma documentação e ninguém para chamar quando quebrou.</p>
+          <ul class="lista">
+            <li>Eu mantenho um produto meu em produção. Sei o que é receber um problema às 22h — e entrego o seu projeto documentado para você não depender de mim.</li>
+          </ul>
+        </article>
+        <article class="cartao" data-mk="rise">
+          <span class="cartao__num">03</span>
+          <h3>Puseram na sua página número que não se sustenta</h3>
+          <p>Depoimento inventado, selo que ninguém emitiu, "mais de 500 clientes" que você nunca teve.</p>
+          <ul class="lista">
+            <li>Regra fixa do meu processo: nada inventado na sua página. Se o dado não existe, o bloco não entra.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="naoe" data-mk="rise">
+        <h3>Para quem eu não sou a pessoa certa</h3>
+        <ul>
+          <li>Se o que decide é o menor preço do mercado. Eu não compito nesse eixo.</li>
+          <li>Se você precisa de uma equipe grande tocando várias frentes ao mesmo tempo. Como freelancer eu trabalho sozinho, um projeto por vez — e se o seu for grande demais para isso, eu digo na primeira conversa em vez de aceitar e atrasar.</li>
+          <li>Se você quer publicar resultado, avaliação ou depoimento que não aconteceu. Nesse caso é melhor não começarmos.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SERVIÇOS (cena papel) ================= -->
+  <section class="secao" id="servicos" data-mk-scene="papel" aria-labelledby="t-servicos">
+    <div class="env">
+      <p class="rotulo" data-mk="fade">Serviços</p>
+      <h2 id="t-servicos" style="font-size: var(--t-2xl); max-width: 26ch;" data-mk="rise">
+        Quatro coisas, feitas de ponta a ponta
+      </h2>
+      <p class="prosa suave" style="margin-top: 1.1rem;" data-mk="rise" data-mk-delay="0.1">
+        Escopo, desenvolvimento, teste e publicação. Você não recebe arquivo sem saber como colocar no ar.
+      </p>
+
+      <div class="grade grade--2" style="margin-top: 2.6rem;" data-mk-stagger>
+        <article class="cartao cartao--links" data-mk="rise">
+          <span class="cartao__num">Serviço 01</span>
+          <h3>Landing page e site de uma página</h3>
+          <p>Página de captura, de vendas, de produto ou institucional simples — construída com a minha própria ferramenta de processo.</p>
+          <ul class="lista">
+            <li>Briefing, estrutura e copy escritas para a sua oferta</li>
+            <li>Direção de arte própria, sem template de banco</li>
+            <li>WhatsApp e formulário ligados onde o seu lead realmente chega</li>
+            <li>SEO técnico com dados estruturados</li>
+            <li>Bateria de testes antes de entregar</li>
+          </ul>
+        </article>
+
+        <article class="cartao cartao--links" data-mk="rise">
+          <span class="cartao__num">Serviço 02</span>
+          <h3>Automação e integração</h3>
+          <p>Para você parar de copiar dado na mão entre as ferramentas que já paga.</p>
+          <ul class="lista">
+            <li>Lead do formulário ou do WhatsApp indo para a planilha ou o CRM</li>
+            <li>Evento de pagamento disparando a entrega</li>
+            <li>Relatório automático no horário que você escolher</li>
+            <li>Tratamento de erro e nova tentativa — não falha em silêncio</li>
+            <li>Diagrama do fluxo e documento de manutenção na entrega</li>
+          </ul>
+        </article>
+
+        <article class="cartao cartao--links" data-mk="rise">
+          <span class="cartao__num">Serviço 03</span>
+          <h3>Dashboard e painel administrativo</h3>
+          <p>Uma tela que sustenta a decisão, em vez de uma planilha que você precisa interpretar.</p>
+          <ul class="lista">
+            <li>Cada indicador definido por escrito antes do primeiro gráfico</li>
+            <li>Ligado na sua fonte real: banco, API, planilha ou Firestore</li>
+            <li>Login e permissão por perfil desde o início</li>
+            <li>Exportação para CSV e Excel</li>
+            <li>Funciona no celular, que é onde você vai olhar</li>
+          </ul>
+        </article>
+
+        <article class="cartao cartao--links" data-mk="rise">
+          <span class="cartao__num">Serviço 04</span>
+          <h3>Manutenção e correção</h3>
+          <p>Site lento, formulário que parou, sistema que outro desenvolvedor deixou pela metade.</p>
+          <ul class="lista">
+            <li>Diagnóstico por escrito primeiro: o que causa, o que custa, se vale consertar ou refazer</li>
+            <li>Correção da causa, não do sintoma</li>
+            <li>Nada em produção sem backup e sem a sua autorização</li>
+            <li>Relatório do que mudou, em linguagem que você entende</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== ASSINATURA: COMO EU TRABALHO (cena papel · S1 palco fixo + S6 espinha) ====== -->
+  <section class="metodo" id="metodo" data-mk-scene="papel" data-metodo data-mk-draw-scope
+           aria-labelledby="t-metodo" data-pattern="S1">
+    <div class="metodo__palco">
+      <div class="env">
+        <p class="rotulo">Como eu trabalho</p>
+        <h2 id="t-metodo">Seis etapas fixas. Você sabe sempre em qual delas estamos.</h2>
+        <p class="metodo__intro prosa suave">
+          Esse processo não é improviso meu a cada projeto: ele está escrito e versionado numa
+          ferramenta que eu mantenho, a <strong>landing-lab</strong>. Esta página foi construída com ela.
+        </p>
+
+        <!-- espinha: o fio desenha com a rolagem; os nós travam ao passar (assinatura S6) -->
+        <svg class="espinha metodo__espinha" viewBox="0 0 600 34" role="img"
+             aria-label="Progresso do processo em seis etapas" data-pattern="S6">
+          <line class="espinha__linha" x1="12" y1="17" x2="588" y2="17"></line>
+          <line class="espinha__fio" x1="12" y1="17" x2="588" y2="17" data-mk-draw></line>
+          <circle class="espinha__no" data-tick cx="12"  cy="17" r="6"></circle>
+          <circle class="espinha__no" data-tick cx="127" cy="17" r="6"></circle>
+          <circle class="espinha__no" data-tick cx="242" cy="17" r="6"></circle>
+          <circle class="espinha__no" data-tick cx="357" cy="17" r="6"></circle>
+          <circle class="espinha__no" data-tick cx="472" cy="17" r="6"></circle>
+          <circle class="espinha__no" data-tick cx="588" cy="17" r="6"></circle>
+        </svg>
+
+        <ol class="metodo__indice" data-indice aria-hidden="true">
+          <li>Briefing</li><li>Estratégia</li><li>Arte</li><li>Código</li><li>Testes</li><li>Entrega</li>
+        </ol>
+
+        <ol class="metodo__etapas" style="list-style: none; padding: 0;">
+          <li class="etapa">
+            <div class="etapa__topo"><span class="etapa__n">Etapa 01</span><h3>Briefing</h3></div>
+            <p>De 15 a 20 minutos, por chamada ou por escrito: o que você vende, para quem, e qual a
+            principal objeção de quem não compra. Sem isso a página fica bonita e não converte.</p>
+            <p class="etapa__saida"><b>Sai daqui:</b> briefing escrito, que vira a régua do resto do projeto.</p>
+          </li>
+          <li class="etapa">
+            <div class="etapa__topo"><span class="etapa__n">Etapa 02</span><h3>Estratégia e copy</h3></div>
+            <p>Posicionamento, ordem das seções e texto escritos para a sua oferta. A estrutura
+            responde, nessa ordem, às perguntas que o visitante faz antes de agir: isto é para mim,
+            resolve o meu problema, como funciona, posso confiar, e como eu faço.</p>
+            <p class="etapa__saida"><b>Sai daqui:</b> a página inteira em texto, para você aprovar antes de existir design.</p>
+          </li>
+          <li class="etapa">
+            <div class="etapa__topo"><span class="etapa__n">Etapa 03</span><h3>Direção de arte</h3></div>
+            <p>Paleta, tipografia, layout e movimento decididos por escrito, com contraste conferido
+            antes de codar. Se você não tem identidade visual, eu monto uma direção e te mostro
+            antes de escrever uma linha de código.</p>
+            <p class="etapa__saida"><b>Sai daqui:</b> a direção aprovada — nenhuma surpresa estética no fim.</p>
+          </li>
+          <li class="etapa">
+            <div class="etapa__topo"><span class="etapa__n">Etapa 04</span><h3>Desenvolvimento</h3></div>
+            <p>Código na stack que a sua hospedagem pede, não a que eu prefiro. Um arquivo único
+            quando é o melhor caminho; Next.js ou Astro quando o projeto cresce. Dados do negócio
+            num só lugar, para você mesmo poder trocar um telefone depois.</p>
+            <p class="etapa__saida"><b>Sai daqui:</b> a página funcionando, em partes que você acompanha.</p>
+          </li>
+          <li class="etapa">
+            <div class="etapa__topo"><span class="etapa__n">Etapa 05</span><h3>Testes</h3></div>
+            <p>Aqui está a diferença que você não vê na proposta de ninguém. Antes de eu dizer que
+            acabou, a página passa por uma bateria automatizada — e eu te mostro o resultado.</p>
+            <ul class="leque" data-mk-stagger>
+              <li style="--mk-i:0"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path class="leque__traco" d="M3 9.5 7 13.5 15 4.5"/></svg> Acessibilidade (WCAG 2.2 AA): contraste, teclado, foco, semântica</li>
+              <li style="--mk-i:1"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path class="leque__traco" d="M3 9.5 7 13.5 15 4.5"/></svg> Performance: carregamento e estabilidade visual no celular</li>
+              <li style="--mk-i:2"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path class="leque__traco" d="M3 9.5 7 13.5 15 4.5"/></svg> Navegadores: Chrome, Firefox e Safari, em 8 larguras de tela</li>
+              <li style="--mk-i:3"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path class="leque__traco" d="M3 9.5 7 13.5 15 4.5"/></svg> Conformidade: varredura do texto por promessa indevida, LGPD e CDC</li>
+            </ul>
+          </li>
+          <li class="etapa">
+            <div class="etapa__topo"><span class="etapa__n">Etapa 06</span><h3>Entrega</h3></div>
+            <p>Publicação, código comentado, documento de manutenção e uma lista do que ficou
+            pendente de confirmação da sua parte. O código fica seu, no seu repositório.</p>
+            <p class="etapa__saida"><b>Sai daqui:</b> você consegue tocar o projeto sem mim — e me chama porque quer, não porque está preso.</p>
+          </li>
+        </ol>
+
+        <div style="margin-top: 2rem;">
+          <a class="btn" href="#contato">Falar comigo sobre o seu projeto <span class="seta" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAIXA "NADA INVENTADO" (cena sinal · S4 + MQ1) ================= -->
+  <section class="secao regra" id="regra" data-mk-scene="sinal" aria-labelledby="t-regra">
+    <div class="env">
+      <p class="rotulo">A regra que não se flexibiliza</p>
+      <h2 id="t-regra" data-mk-view="wipe" data-pattern="S4">Nada inventado na sua página.</h2>
+
+      <div class="regra__itens">
+        <div>
+          <h3>Nenhum dado que não existe</h3>
+          <p>Nenhum depoimento, avaliação, número de clientes, selo, prêmio ou logo de empresa que
+          não autorizou. Se o dado não existe, o bloco não entra na página — ele não vira um
+          número bonito de enfeite.</p>
+        </div>
+        <div>
+          <h3>Nenhuma integração que finge funcionar</h3>
+          <p>Se o formulário não tem para onde enviar, ele não mostra "enviado com sucesso". Ou a
+          integração é real, ou o canal é outro — link direto, WhatsApp, e-mail.</p>
+        </div>
+        <div>
+          <h3>Nenhuma promessa que depende de você</h3>
+          <p>Eu não prometo um resultado que depende de você, não me declaro o número um sem ter
+          como provar, e não uso contador de vagas que reinicia sozinho. Além de ser proibido pelo
+          Código de Defesa do Consumidor, é o tipo de coisa que derruba a sua credibilidade no dia
+          em que alguém confere.</p>
+        </div>
+        <div>
+          <h3>Vale inclusive para esta página</h3>
+          <p>Você não vai achar aqui número de projetos entregues, nota de avaliação nem depoimento.
+          Eu estou começando nas plataformas de freelance e ainda não tenho esses dados. Quando
+          tiver, eles entram — com a fonte.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faixa" data-mk-marquee="26" aria-hidden="true" data-pattern="MQ1">
+      <div class="faixa__item">nada inventado</div>
+      <div class="faixa__item">integração real ou nenhuma</div>
+      <div class="faixa__item">escopo por escrito</div>
+      <div class="faixa__item">o código fica seu</div>
+    </div>
+  </section>
+
+  <!-- ================= O QUE EU POSSO MOSTRAR (cena papel) ================= -->
+  <section class="secao mostrar" id="mostrar" data-mk-scene="papel" aria-labelledby="t-mostrar">
+    <div class="env">
+      <p class="rotulo" data-mk="fade">O que eu posso te mostrar</p>
+      <h2 id="t-mostrar" data-mk="rise">Não tenho depoimento para te mostrar ainda. Tenho código.</h2>
+      <p class="mostrar__aviso" data-mk="rise" data-mk-delay="0.1">
+        Em vez de encher esta seção de prova social que eu não tenho, aqui está o que existe e você
+        pode abrir e conferir agora.
+      </p>
+
+      <div class="grade grade--2 mostrar__grade" data-mk-stagger>
+        <article class="cartao cartao--links" data-mk="rise">
+          <p class="prova__tag">Produto próprio · em produção</p>
+          <h3 style="margin-top:.6rem;">Atendara</h3>
+          <p>SaaS de agendamento e gestão de atendimento para profissionais de saúde e estética.
+          Desenhei, programei e mantenho sozinho: modelagem de dados, regras de acesso, integração
+          com agenda, automações e um assistente de WhatsApp. É o projeto que me ensinou a diferença
+          entre entregar e manter.</p>
+          <div class="prova__stack">
+            <span>Firebase</span><span>Firestore</span><span>Cloud Functions</span>
+            <span>Regras de segurança</span><span>Google Calendar API</span><span>n8n</span><span>WhatsApp</span>
+          </div>
+          <p style="margin-top:1.1rem;">
+            <a class="link" href="https://atendara.app" target="_blank" rel="noopener">atendara.app ↗</a>
+          </p>
+        </article>
+
+        <article class="cartao cartao--links" data-mk="rise">
+          <p class="prova__tag">Ferramenta própria · versionada</p>
+          <h3 style="margin-top:.6rem;">landing-lab</h3>
+          <p>A ferramenta que executa o processo de seis etapas desta página: briefing, estratégia,
+          direção de arte, desenvolvimento, bateria de testes e entrega. Ela tem regras que eu não
+          flexibilizo e scripts que rodam sozinhos — acessibilidade, performance, comportamento em
+          vários navegadores e varredura do texto em busca de promessa indevida.</p>
+          <div class="prova__stack">
+            <span>Processo em 10 etapas</span><span>Scripts de teste</span><span>Varredura de conformidade</span>
+          </div>
+          <p style="margin-top:1.1rem;"><strong>Esta página é a peça de demonstração dela.</strong></p>
+        </article>
+
+        <article class="cartao cartao--links" data-mk="rise">
+          <p class="prova__tag">Estúdio · com outros dois desenvolvedores</p>
+          <h3 style="margin-top:.6rem;">Serifa Labs</h3>
+          <p>Estúdio de software que eu toco junto com outros dois desenvolvedores. Ali eu
+          construí a landing page pública, a identidade da marca, as telas de login e o painel
+          administrativo, além do sistema de avisos do portal do cliente — onde quem contrata
+          acompanha status, contrato e links do projeto.</p>
+          <div class="prova__stack">
+            <span>Next.js 16</span><span>React 19</span><span>Tailwind 4</span>
+            <span>Firebase Auth</span><span>Firestore</span><span>Cloud Functions</span><span>GitHub Actions</span>
+          </div>
+          <p style="margin-top:1.1rem;">
+            <a class="link" href="https://serifalabs.com" target="_blank" rel="noopener">serifalabs.com ↗</a>
+            — está no ar, dá para abrir e conferir.
+          </p>
+        </article>
+
+        <article class="cartao cartao--links" data-mk="rise">
+          <p class="prova__tag">Formação e código aberto</p>
+          <h3 style="margin-top:.6rem;">Formação em TI e repositórios públicos</h3>
+          <p>Tenho formação em TI e mantenho código público. Se você quiser ver como eu escrevo antes
+          de me contratar, o repositório responde melhor do que qualquer texto desta página.</p>
+          <p style="margin-top:1.1rem;">
+            <a class="link" href="https://github.com/GuilhermeLuizatto" target="_blank" rel="noopener">github.com/GuilhermeLuizatto ↗</a>
+          </p>
+        </article>
+      </div>
+
+      <div style="margin-top: 2.4rem;" data-mk="rise">
+        <a class="btn" href="#contato">Falar comigo sobre o seu projeto <span class="seta" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ (cena papel) ================= -->
+  <section class="secao faq" id="faq" data-mk-scene="papel" aria-labelledby="t-faq">
+    <div class="env">
+      <p class="rotulo" data-mk="fade">Perguntas que sempre chegam</p>
+      <h2 id="t-faq" data-mk="rise">Antes de você me perguntar</h2>
+
+      <div class="faq__lista" data-mk="rise" data-mk-delay="0.1">
+        <details>
+          <summary>Quanto custa?</summary>
+          <p>Depende do escopo, e eu não dou número antes do briefing porque um número chutado só
+          serve para um de nós dois se decepcionar depois. O que eu garanto é o processo: depois da
+          conversa inicial você recebe o escopo e o valor por escrito, e esse valor não muda sem
+          você aprovar a mudança.</p>
+          <p>Se o seu orçamento é fixo, me diga qual é. Em vez de baixar o preço e entregar pior, eu
+          reduzo o escopo com você e digo o que fica para uma segunda etapa.</p>
+        </details>
+        <details>
+          <summary>Qual é o prazo?</summary>
+          <p>Também sai do briefing, e eu dou o prazo do cenário ruim, não do cenário em que tudo dá
+          certo. O que mais atrasa projeto não é código: é material que não chega — texto, foto,
+          acesso, decisão. Na primeira conversa eu já te digo o que preciso de você e quando.</p>
+        </details>
+        <details>
+          <summary>O que eu preciso te enviar?</summary>
+          <p>No mínimo: o que você vende, para quem, e para onde o contato deve chegar (WhatsApp,
+          e-mail, CRM ou planilha). Texto e foto ajudam, mas não são bloqueio — a escrita pode entrar
+          no escopo, e se não houver foto eu construo a página sem depender de imagem em vez de
+          encher de banco de imagem.</p>
+        </details>
+        <details>
+          <summary>Você cuida de domínio e hospedagem?</summary>
+          <p>Sim, eu publico e deixo funcionando. O domínio e a conta de hospedagem ficam no seu
+          nome, nunca no meu — isso é importante: se um dia você quiser trocar de desenvolvedor, não
+          precisa pedir nada para mim.</p>
+        </details>
+        <details>
+          <summary>De quem fica o código?</summary>
+          <p>Seu. Entrego no seu repositório, comentado, com documento de manutenção. Não uso
+          plataforma fechada que te obrigue a voltar em mim para mudar um telefone no rodapé.</p>
+        </details>
+        <details>
+          <summary>E depois da entrega, se quebrar?</summary>
+          <p>Correção do que eu fiz e que não funcionou como combinado é minha responsabilidade, sem
+          cobrança. Mudança nova, funcionalidade nova ou problema causado por terceiro é escopo
+          novo, orçado na hora — e eu te digo qual dos dois é antes de mexer.</p>
+        </details>
+        <details>
+          <summary>Você trabalha com WordPress?</summary>
+          <p>Mexo em site de WordPress que já existe (correção, performance, ajuste de página). Para
+          projeto novo eu normalmente proponho outra coisa, porque sai mais rápido, mais seguro e
+          mais barato de manter — mas se o seu time já opera WordPress e não quer trocar, isso pesa
+          mais que a minha preferência.</p>
+        </details>
+        <details>
+          <summary>Por que você não tem avaliação nem portfólio grande?</summary>
+          <p>Porque eu estou começando nas plataformas de freelance agora. Eu poderia encher esta
+          página de número inventado, como muita gente faz — mas essa é exatamente a coisa que eu me
+          recuso a colocar na página de um cliente, então não coloco na minha. O que eu tenho para
+          mostrar é o produto que mantenho no ar, o código público e esta página.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTATO (cena tinta) ================= -->
+  <section class="secao contato" id="contato" data-mk-scene="tinta" aria-labelledby="t-contato">
+    <div class="env">
+      <p class="rotulo" data-mk="fade">Contato</p>
+      <h2 id="t-contato" data-mk="rise">Me conte o que você precisa resolver.</h2>
+      <p class="contato__sub" data-mk="rise" data-mk-delay="0.1">
+        Não precisa chegar com o projeto pronto na cabeça. Me diga o problema e eu te digo se eu sou
+        a pessoa certa — inclusive quando não sou.
+      </p>
+
+      <!-- Link do WhatsApp gerado e validado com scripts/wa-link.mjs da landing-lab.
+           Para mudar o número ou a mensagem, rode o script de novo em vez de editar
+           a URL na mão — ele codifica o texto e confere o formato do número. -->
+      <div class="canais" data-mk="rise" data-mk-delay="0.2">
+        <a class="btn" href="https://wa.me/5513996649260?text=Oi%2C%20Guilherme!%20Vi%20a%20sua%20p%C3%A1gina%20e%20queria%20falar%20sobre%20um%20projeto.">
+          Falar no WhatsApp <span class="seta" aria-hidden="true">→</span>
+        </a>
+        <a class="btn btn--fantasma" href="mailto:guilhermeluizatto@gmail.com?subject=Projeto%20-%20vim%20pela%20sua%20p%C3%A1gina">Mandar e-mail</a>
+        <a class="btn btn--fantasma" href="https://github.com/GuilhermeLuizatto" target="_blank" rel="noopener">Ver o código no GitHub</a>
+      </div>
+      <p class="hero__nota" style="margin-top:1.6rem;" data-mk="fade" data-mk-delay="0.3">
+        <span>O WhatsApp já abre com uma mensagem pronta — é só enviar</span>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape" data-mk-scene="tinta">
+  <div class="env rodape__env">
+    <div>
+      <p><strong style="color: var(--mk-ink);">Guilherme Luizatto — Desenvolvimento web</strong><br>
+      Landing pages, automações, dashboards e manutenção de sistemas. Atendimento em português
+      e inglês, remoto, de qualquer lugar do Brasil.<br>
+      <a class="link" href="mailto:guilhermeluizatto@gmail.com">guilhermeluizatto@gmail.com</a>
+      · <a class="link" href="https://github.com/GuilhermeLuizatto" target="_blank" rel="noopener">github.com/GuilhermeLuizatto</a></p>
+      <p style="margin-top:.8rem;">Esta página não usa cookie, não tem analytics, não carrega
+      script de terceiro e não coleta nenhum dado seu. Ela é um único arquivo HTML.</p>
+    </div>
+    <div class="rodape__acoes">
+      <button class="btn-pausa" type="button" data-mk-pausar aria-pressed="false"
+              data-mk-txt-pausar="Pausar animações" data-mk-txt-retomar="Retomar animações">
+        <span data-mk-pausar-texto>Pausar animações</span>
+      </button>
+      <a class="link" style="font-family: var(--mono); font-size: var(--t-xs);" href="#inicio">Voltar ao topo ↑</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Botão flutuante de WhatsApp: DESLIGADO por escolha do Guilherme (só o botão
+     da seção de contato). Se um dia quiser ligar, basta descomentar — o link já
+     é o número real e validado. Atenção: botão fixo precisa não cobrir o CTA nem
+     o fim da página (WCAG 2.4.11); o page-check testa isso.
+<a class="btn" href="https://wa.me/5513996649260?text=Oi%2C%20Guilherme!%20Vi%20a%20sua%20p%C3%A1gina%20e%20queria%20falar%20sobre%20um%20projeto."
+   style="position:fixed; right:16px; bottom:16px; z-index:60;"
+   aria-label="Falar no WhatsApp">WhatsApp</a>
+-->
+
+<script>
+/*!
+ * motion-kit.js — movimento 2D por atributos data-mk-* (ref. 12 da skill landing-page-architect).
+ * Sem dependências. Usa Lenis (rolagem suave) e GSAP/ScrollTrigger se já estiverem carregados na página.
+ * Funciona em HTML único (inclusive aberto do disco), Astro, WordPress, Laravel/Blade e embeds do Webflow.
+ *
+ * 1) No <head>, ANTES do CSS, cole o snippet de README.md ("Instalação"). Ele não fica aqui porque a tag de
+ *    fechamento de script dentro deste comentário quebraria o HTML único quando o kit é embutido inline.
+ * 2) motion-kit.css no <head>; motion-kit.js no fim do <body> (depois de Lenis/GSAP, se usar).
+ * 3) Marque o HTML (lista completa no README.md desta pasta).
+ *
+ * Garantias: conteúdo nunca fica escondido sem JS; redução de movimento e economia de dados desligam
+ * deslocamento, parallax, rolagem suave e cursor; cores das cenas continuam (cor não é movimento).
+ */
+(function () {
+  "use strict";
+  var doc = document.documentElement;
+  var motion = doc.classList.contains("mk-motion");
+  var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  var vh = window.innerHeight;
+  var lenis = null;
+  var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
+  var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
+
+  /* ---------- Texto dividido (palavras ou letras) com máscara ---------- */
+  function split(el) {
+    if (el.dataset.mkSplitDone) return;
+    el.dataset.mkSplitDone = "1";
+    var chars = el.dataset.mk === "split-chars";
+    var i = 0;
+    if (chars) el.setAttribute("aria-label", el.textContent.replace(/\s+/g, " ").trim());
+    var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (node) {
+      var parts = node.nodeValue.split(/(\s+)/);
+      var frag = document.createDocumentFragment();
+      parts.forEach(function (part) {
+        if (!part) return;
+        if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+        var word = document.createElement("span");
+        word.className = "mk-word";
+        if (chars) word.setAttribute("aria-hidden", "true");
+        var pieces = chars ? Array.from(part) : [part];
+        pieces.forEach(function (p) {
+          var piece = document.createElement("span");
+          piece.className = "mk-piece";
+          piece.style.setProperty("--mk-i", i++);
+          piece.textContent = p;
+          word.appendChild(piece);
+        });
+        frag.appendChild(word);
+      });
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  /* ---------- Revelações ao entrar na tela ---------- */
+  function setupReveals() {
+    $$("[data-mk-stagger]").forEach(function (parent) {
+      $$(":scope > [data-mk]", parent).forEach(function (child, i) { child.style.setProperty("--mk-i", i); });
+    });
+    var els = $$("[data-mk]");
+    els.forEach(function (el) {
+      if (/^split/.test(el.dataset.mk)) split(el);
+      if (el.dataset.mkDelay) {
+        var d = parseFloat(el.dataset.mkDelay) + "s";
+        el.style.transitionDelay = d;
+        $$(".mk-piece", el).forEach(function (p) {
+          p.style.transitionDelay = "calc(" + d + " + var(--mk-i, 0) * var(--mk-stagger))";
+        });
+      }
+    });
+    if (!motion) { els.forEach(function (el) { el.classList.add("mk-in"); }); return; }
+    if (!("IntersectionObserver" in window)) { els.forEach(function (el) { el.classList.add("mk-in"); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add("mk-in"); io.unobserve(e.target); }
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
+    // O Chrome desconta o clip-path do próprio alvo: um elemento em inset(100%) tem área visível zero e
+    // nunca "entra". Para clip e clip-x, observe o primeiro ancestral sem recorte e revele por ele.
+    var CLIPPED = /^clip(-x)?$/;
+    var proxies = new Map();
+    var pio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        (proxies.get(e.target) || []).forEach(function (el) { el.classList.add("mk-in"); });
+        proxies.delete(e.target); pio.unobserve(e.target);
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0 });
+    els.forEach(function (el) {
+      if (!CLIPPED.test(el.dataset.mk)) { io.observe(el); return; }
+      var p = el.parentElement;
+      while (p && p !== document.body && CLIPPED.test((p.dataset && p.dataset.mk) || "")) p = p.parentElement;
+      if (!p) { el.classList.add("mk-in"); return; }
+      if (!proxies.has(p)) { proxies.set(p, []); pio.observe(p); }
+      proxies.get(p).push(el);
+    });
+  }
+
+  /* ---------- Cenas de cor (valem também sem movimento) ---------- */
+  function setupScenes() {
+    var scenes = $$("[data-mk-scene]");
+    if (!scenes.length) return;
+    doc.dataset.mkScene = scenes[0].dataset.mkScene;
+    if (!("IntersectionObserver" in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) doc.dataset.mkScene = e.target.dataset.mkScene; });
+    }, { rootMargin: "-50% 0px -50% 0px", threshold: 0 });
+    scenes.forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- Contadores (só números reais; o HTML já traz o valor final) ---------- */
+  function setupCounters() {
+    if (!motion || !("IntersectionObserver" in window)) return;
+    $$("[data-mk-count]").forEach(function (el) {
+      var target = parseFloat(el.dataset.mkCount);
+      if (isNaN(target)) return;
+      var decimals = parseInt(el.dataset.mkDecimals || "0", 10);
+      var fmt = new Intl.NumberFormat("pt-BR", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+      var prefix = el.dataset.mkPrefix || "", suffix = el.dataset.mkSuffix || "";
+      var finalText = el.textContent;
+      el.textContent = prefix + fmt.format(0) + suffix;
+      var io = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        io.disconnect();
+        var start = performance.now(), dur = 1600;
+        (function tick(now) {
+          var t = clamp((now - start) / dur, 0, 1), k = 1 - Math.pow(1 - t, 3);
+          el.textContent = t < 1 ? prefix + fmt.format(target * k) + suffix : finalText;
+          if (t < 1) requestAnimationFrame(tick);
+        })(start);
+      }, { threshold: 0.6 });
+      io.observe(el);
+    });
+  }
+
+  /* ---------- Marquee ---------- */
+  function setupMarquees() {
+    $$("[data-mk-marquee]").forEach(function (box) {
+      if (box.querySelector(".mk-marquee-track")) return;
+      var track = document.createElement("div");
+      track.className = "mk-marquee-track";
+      while (box.firstChild) track.appendChild(box.firstChild);
+      box.appendChild(track);
+      if (box.dataset.mkMarquee) box.style.setProperty("--mk-marquee-dur", box.dataset.mkMarquee + "s");
+      if (!motion) return;
+      var clone = document.createElement("div");
+      clone.setAttribute("aria-hidden", "true");
+      clone.style.display = "contents";
+      Array.prototype.forEach.call(track.children, function (c) {
+        var cc = c.cloneNode(true);
+        $$("a, button, input, [tabindex]", cc).forEach(function (f) { f.setAttribute("tabindex", "-1"); });
+        if (cc.matches && cc.matches("a, button")) cc.setAttribute("tabindex", "-1");
+        clone.appendChild(cc);
+      });
+      track.appendChild(clone);
+    });
+    $$("[data-mk-marquee-toggle]").forEach(function (btn) {
+      var target = document.getElementById(btn.getAttribute("aria-controls"));
+      if (!target) return;
+      if (!motion) { btn.hidden = true; return; }
+      btn.addEventListener("click", function () {
+        var paused = target.classList.toggle("mk-paused");
+        btn.setAttribute("aria-pressed", paused ? "true" : "false");
+      });
+    });
+  }
+
+  /* ---------- Pausa global (WCAG 2.2.2): botão [data-mk-pausar] → <html class="mk-pausado"> ----------
+   * Para os loops CSS ([data-mk-loop]), os marquees e os vídeos [data-mk-autopause], e lembra a escolha
+   * (localStorage "mk-pausado"; o snippet do <head> a aplica antes da pintura). Loops seus em JS (GSAP com
+   * repeat: -1, canvas, WebGL) leem MK.pausado ou ouvem o evento "mk:pausa" no document. Animações presas à
+   * rolagem não param: quem move é a pessoa. */
+  var CHAVE_PAUSA = "mk-pausado";
+  function pausado() { return doc.classList.contains("mk-pausado"); }
+  function aplicarPausa(p, lembrar) {
+    doc.classList.toggle("mk-pausado", p);
+    if (lembrar) { try { localStorage.setItem(CHAVE_PAUSA, p ? "1" : "0"); } catch (e) {} }
+    $$("[data-mk-pausar]").forEach(function (btn) {
+      btn.setAttribute("aria-pressed", p ? "true" : "false");
+      var rot = p ? (btn.dataset.mkTxtRetomar || "Retomar animações") : (btn.dataset.mkTxtPausar || "Pausar animações");
+      var alvo = btn.querySelector("[data-mk-pausar-texto]");
+      if (alvo) alvo.textContent = rot;
+      else if (!btn.children.length) btn.textContent = rot;
+      else btn.setAttribute("aria-label", rot);
+    });
+    $$("video[data-mk-autopause]").forEach(function (v) {
+      if (p) v.pause();
+      else if (motion && v.hasAttribute("autoplay") && !v.classList.contains("mk-offscreen")) { var r = v.play(); if (r && r.catch) r.catch(function () {}); }
+    });
+    try { document.dispatchEvent(new CustomEvent("mk:pausa", { detail: { pausado: p } })); } catch (e) {}
+  }
+  function setupPausa() {
+    var bts = $$("[data-mk-pausar]");
+    if (!motion) { bts.forEach(function (b) { b.hidden = true; }); return; }
+    bts.forEach(function (btn) { btn.addEventListener("click", function () { aplicarPausa(!pausado(), true); }); });
+    aplicarPausa(pausado(), false);
+  }
+
+  /* ---------- Pausa fora da tela: loops, marquees e vídeos com data-mk-autopause ---------- */
+  function setupOffscreen() {
+    if (!("IntersectionObserver" in window)) return;
+    var els = $$("[data-mk-loop], [data-mk-marquee], video[data-mk-autopause]");
+    if (!els.length) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        e.target.classList.toggle("mk-offscreen", !e.isIntersecting);
+        if (e.target.tagName === "VIDEO") {
+          if (!e.isIntersecting) e.target.pause();
+          else if (motion && !pausado() && e.target.hasAttribute("autoplay")) { var p = e.target.play(); if (p && p.catch) p.catch(function () {}); }
+        }
+      });
+    }, { rootMargin: "100px 0px" });
+    els.forEach(function (el) { io.observe(el); });
+  }
+
+  /* ---------- Rolagem horizontal fixada ---------- */
+  var horizontals = [];
+  function setupHorizontals() {
+    horizontals = $$("[data-mk-horizontal]").map(function (section) {
+      var sticky = section.querySelector("[data-mk-sticky]");
+      var track = section.querySelector("[data-mk-track]");
+      if (!sticky || !track) return null;
+      var h = { section: section, sticky: sticky, track: track, distance: 0, on: false };
+      track.addEventListener("focusin", function (e) {
+        if (!h.on) return;
+        var item = e.target.closest("[data-mk-track] > *") || e.target;
+        var p = clamp(item.offsetLeft / h.distance, 0, 1);
+        var top = section.getBoundingClientRect().top + window.scrollY + p * h.distance;
+        if (lenis) lenis.scrollTo(top, { immediate: true }); else window.scrollTo({ top: top, behavior: "instant" });
+      });
+      return h;
+    }).filter(Boolean);
+    measureHorizontals();
+  }
+  function measureHorizontals() {
+    horizontals.forEach(function (h) {
+      var want = motion && window.innerWidth >= 1024;
+      h.section.classList.toggle("mk-h-on", want);
+      h.on = want;
+      if (!want) { h.section.style.height = ""; h.track.style.transform = ""; return; }
+      h.distance = Math.max(0, h.track.scrollWidth - h.sticky.clientWidth);
+      h.section.style.height = h.distance + window.innerHeight + "px";
+    });
+  }
+
+  /* ---------- Atualizações ligadas à rolagem (parallax, traço SVG, horizontal, progresso) ---------- */
+  var parallax = [], draws = [], progressBars = [], scrubs = [], ticking = false;
+
+  /* ---------- Fallback do scrub em CSS (navegador sem animation-timeline, ex.: Firefox) ----------
+   * <section data-mk-scrub> é a seção alta (o "contain" da view-timeline). Dentro dela, cada
+   * [data-mk-scrub-anim="nome-do-keyframes"] com data-mk-range="0.25 0.5" (frações do trecho fixo) é
+   * tocado por WAAPI conforme a rolagem. Com suporte nativo, o kit não faz nada: o CSS manda.
+   * Escreva as regras nativas sob :not(.mk-scrub-js) para não animar duas vezes. */
+  function keyframesPorNome() {
+    var mapa = {};
+    Array.prototype.forEach.call(document.styleSheets, function (ss) {
+      var regras; try { regras = ss.cssRules; } catch (e) { return; }
+      (function visita(rs) { Array.prototype.forEach.call(rs || [], function (r) {
+        if (r.type === 7) mapa[r.name] = r; else if (r.cssRules) visita(r.cssRules);
+      }); })(regras);
+    });
+    return mapa;
+  }
+  function resolveVars(valor, el) {
+    var cs = getComputedStyle(el);
+    for (var i = 0; i < 5 && /var\(/.test(valor); i++) {
+      valor = valor.replace(/var\(\s*(--[\w-]+)\s*(?:,\s*([^()]*))?\)/g, function (m, nome, reserva) {
+        var v = cs.getPropertyValue(nome).trim(); return v || (reserva || "").trim();
+      });
+    }
+    return valor;
+  }
+  function framesDe(regra, el) {
+    var out = [];
+    Array.prototype.forEach.call(regra.cssRules, function (k) {
+      var props = {};
+      for (var i = 0; i < k.style.length; i++) {
+        var p = k.style[i];
+        props[p.replace(/-([a-z])/g, function (m, c) { return c.toUpperCase(); })] = resolveVars(k.style.getPropertyValue(p), el);
+      }
+      k.keyText.split(",").forEach(function (t) {
+        t = t.trim(); var o = t === "from" ? 0 : t === "to" ? 1 : parseFloat(t) / 100;
+        out.push(Object.assign({ offset: o }, props));
+      });
+    });
+    return out.sort(function (a, b) { return a.offset - b.offset; });
+  }
+  function setupScrubFallback() {
+    var secs = $$("[data-mk-scrub]");
+    if (!secs.length || !motion || typeof Element.prototype.animate !== "function") return;
+    var nativo = window.CSS && CSS.supports && CSS.supports("animation-timeline: view()") && !doc.hasAttribute("data-mk-scrub-fallback");
+    if (nativo) return;
+    doc.classList.add("mk-scrub-js");
+    var kf = keyframesPorNome();
+    scrubs = secs.map(function (sec) {
+      var itens = $$("[data-mk-scrub-anim]", sec).map(function (el) {
+        var regra = kf[el.dataset.mkScrubAnim]; if (!regra) return null;
+        var r = (el.dataset.mkRange || "0 1").split(/\s+/).map(Number);
+        try {
+          var a = el.animate(framesDe(regra, el), { duration: 1000, fill: "both", easing: "linear" });
+          a.pause(); return { a: a, r0: r[0] || 0, r1: isNaN(r[1]) ? 1 : r[1] };
+        } catch (e) { return null; }
+      }).filter(Boolean);
+      return { sec: sec, itens: itens };
+    });
+  }
+  function setupScrollLinked() {
+    if (!motion) return;
+    parallax = $$("[data-mk-parallax]").map(function (el) { return { el: el, speed: parseFloat(el.dataset.mkParallax) || 0.15 }; });
+    draws = $$("[data-mk-draw]").map(function (path) {
+      if (typeof path.getTotalLength !== "function") return null;
+      var len = path.getTotalLength();
+      path.style.strokeDasharray = len;
+      path.style.strokeDashoffset = len;
+      var scope = path.closest("[data-mk-draw-scope]") || path.ownerSVGElement || path;
+      return { path: path, len: len, scope: scope };
+    }).filter(Boolean);
+    progressBars = $$("[data-mk-progress]");
+    setupScrubFallback();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    update();
+  }
+  function requestUpdate() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+  function update() {
+    ticking = false;
+    parallax.forEach(function (p) {
+      var r = p.el.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) return;
+      var offset = (r.top + r.height / 2 - vh / 2) * -p.speed;
+      p.el.style.transform = "translate3d(0," + offset.toFixed(1) + "px,0)";
+    });
+    draws.forEach(function (d) {
+      var r = d.scope.getBoundingClientRect();
+      var t = clamp((vh * 0.85 - r.top) / (r.height + vh * 0.35), 0, 1);
+      d.path.style.strokeDashoffset = (d.len * (1 - t)).toFixed(1);
+    });
+    horizontals.forEach(function (h) {
+      if (!h.on) return;
+      var r = h.section.getBoundingClientRect();
+      var t = clamp(-r.top / (h.distance || 1), 0, 1);
+      h.track.style.transform = "translate3d(" + (-t * h.distance).toFixed(1) + "px,0,0)";
+    });
+    scrubs.forEach(function (s) {
+      var r = s.sec.getBoundingClientRect();
+      var p = clamp(-r.top / Math.max(1, r.height - vh), 0, 1);
+      s.itens.forEach(function (it) {
+        var local = clamp((p - it.r0) / Math.max(0.0001, it.r1 - it.r0), 0, 1);
+        it.a.currentTime = local * 999.9;
+      });
+    });
+    if (progressBars.length) {
+      var max = document.documentElement.scrollHeight - vh;
+      var t = max > 0 ? clamp(window.scrollY / max, 0, 1) : 0;
+      progressBars.forEach(function (b) { b.style.transform = "scaleX(" + t.toFixed(4) + ")"; });
+    }
+  }
+
+  /* ---------- Microinterações: ímã, inclinação 3D e cursor ---------- */
+  function setupPointer() {
+    if (!motion || !finePointer) return;
+    $$("[data-mk-magnetic]").forEach(function (el) {
+      var strength = parseFloat(el.dataset.mkMagnetic) || 0.3;
+      el.addEventListener("pointermove", function (e) {
+        var r = el.getBoundingClientRect();
+        var x = (e.clientX - r.left - r.width / 2) * strength, y = (e.clientY - r.top - r.height / 2) * strength;
+        el.style.transform = "translate3d(" + x.toFixed(1) + "px," + y.toFixed(1) + "px,0)";
+      });
+      el.addEventListener("pointerleave", function () { el.style.transform = ""; });
+    });
+    $$("[data-mk-tilt]").forEach(function (el) {
+      var max = parseFloat(el.dataset.mkTilt) || 8;
+      el.addEventListener("pointermove", function (e) {
+        var r = el.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = "perspective(800px) rotateY(" + (x * max * 2).toFixed(2) + "deg) rotateX(" + (-y * max * 2).toFixed(2) + "deg)";
+      });
+      el.addEventListener("pointerleave", function () { el.style.transform = ""; });
+    });
+    if (document.body.hasAttribute("data-mk-cursor")) {
+      var dot = document.createElement("div");
+      dot.className = "mk-cursor";
+      dot.setAttribute("aria-hidden", "true");
+      document.body.appendChild(dot);
+      var tx = -100, ty = -100, cx = -100, cy = -100, running = false;
+      var loop = function () {
+        cx += (tx - cx) * 0.2; cy += (ty - cy) * 0.2;
+        dot.style.transform = "translate3d(" + cx.toFixed(1) + "px," + cy.toFixed(1) + "px,0)";
+        if (Math.abs(tx - cx) + Math.abs(ty - cy) > 0.5) requestAnimationFrame(loop); else running = false;
+      };
+      window.addEventListener("pointermove", function (e) {
+        tx = e.clientX; ty = e.clientY;
+        dot.classList.toggle("mk-hover", !!(e.target.closest && e.target.closest("a, button, [data-mk-cursor-hover]")));
+        if (!running) { running = true; requestAnimationFrame(loop); }
+      }, { passive: true });
+      document.addEventListener("pointerleave", function () { dot.style.opacity = "0"; });
+      document.addEventListener("pointerenter", function () { dot.style.opacity = "1"; });
+    }
+  }
+
+  /* ---------- Rolagem suave (Lenis, se presente) ---------- */
+  function setupLenis() {
+    if (!motion || typeof window.Lenis !== "function" || doc.hasAttribute("data-mk-no-lenis")) return;
+    lenis = new window.Lenis({ lerp: 0.1, smoothWheel: true });
+    var gsap = window.gsap, ST = window.ScrollTrigger;
+    if (gsap && ST) {
+      lenis.on("scroll", ST.update);
+      gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
+    }
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a || a.getAttribute("href").length < 2) return;
+      var target = document.getElementById(decodeURIComponent(a.getAttribute("href").slice(1)));
+      if (!target) return;
+      e.preventDefault();
+      var offset = -(parseFloat(getComputedStyle(doc).getPropertyValue("--mk-anchor-offset")) || 80);
+      lenis.scrollTo(target, { offset: offset, onComplete: function () {
+        if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+        target.focus({ preventScroll: true });
+      } });
+      history.pushState(null, "", a.getAttribute("href"));
+    });
+  }
+
+  /* ---------- Preloader e início ---------- */
+  function start() {
+    setupReveals();
+    setupCounters();
+  }
+  function boot() {
+    setupScenes();
+    setupMarquees();
+    setupOffscreen();
+    setupPausa();
+    setupLenis();
+    setupHorizontals();
+    setupScrollLinked();
+    setupPointer();
+    var pre = document.querySelector("[data-mk-preloader]");
+    if (motion && pre) {
+      var t0 = performance.now();
+      var fonts = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+      Promise.race([fonts, new Promise(function (r) { setTimeout(r, 1400); })]).then(function () {
+        setTimeout(function () {
+          doc.classList.add("mk-loaded");
+          start();
+          setTimeout(function () { pre.style.display = "none"; }, 1000);
+        }, Math.max(0, 450 - (performance.now() - t0)));
+      });
+    } else {
+      if (pre) pre.style.display = "none";
+      start();
+    }
+    window.addEventListener("resize", function () {
+      vh = window.innerHeight;
+      measureHorizontals();
+      requestUpdate();
+    });
+    window.addEventListener("load", function () { measureHorizontals(); requestUpdate(); if (window.ScrollTrigger) window.ScrollTrigger.refresh(); });
+    window.__mkReady = true;
+    window.MotionKit = {
+      lenis: lenis, motion: motion,
+      refresh: function () { measureHorizontals(); requestUpdate(); },
+      get pausado() { return pausado(); },
+      pausar: function (p) { aplicarPausa(p !== false, true); }
+    };
+    window.MK = window.MotionKit;
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot); else boot();
+})();
+
+/* =========================================================================
+   Assinatura (S6 + S1): o palco do método troca a etapa conforme a rolagem,
+   e os nós da espinha travam atrás do fio que o motion kit desenha.
+   Só roda com movimento permitido: sem JS ou com prefers-reduced-motion,
+   o CSS entrega as seis etapas abertas numa lista vertical.
+   ========================================================================= */
+(function () {
+  var html = document.documentElement;
+  if (!html.classList.contains('mk-motion')) return;
+
+  var sec = document.querySelector('[data-metodo]');
+  if (!sec) return;
+
+  var etapas = [].slice.call(sec.querySelectorAll('.etapa'));
+  var nos = [].slice.call(sec.querySelectorAll('[data-tick]'));
+  var indice = [].slice.call(sec.querySelectorAll('[data-indice] li'));
+  if (etapas.length < 2) return;
+
+  var atual = -1, agendado = false;
+
+  function aplicar() {
+    agendado = false;
+    var r = sec.getBoundingClientRect();
+    var curso = Math.max(1, r.height - window.innerHeight);
+    var p = Math.min(1, Math.max(0, -r.top / curso));
+    var i = Math.min(etapas.length - 1, Math.floor(p * etapas.length * 0.9999));
+    if (i === atual) return;
+    atual = i;
+    etapas.forEach(function (e, j) { e.classList.toggle('on', j === i); });
+    nos.forEach(function (n, j) { n.classList.toggle('on', j <= i); });
+    indice.forEach(function (l, j) { l.classList.toggle('on', j <= i); });
+  }
+  function pedir() {
+    if (!agendado) { agendado = true; requestAnimationFrame(aplicar); }
+  }
+
+  window.addEventListener('scroll', pedir, { passive: true });
+  window.addEventListener('resize', pedir);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(pedir).catch(function () {});
+  aplicar();
+})();
+</script>
+</body>
+</html>

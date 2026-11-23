@@ -1,0 +1,13 @@
+# Normaliza quebras de linha: LF no repositório, nativo no disco de cada um.
+# Sem isto, abrir o projeto em outro sistema gera diff fantasma em arquivo inteiro.
+* text=auto eol=lf
+
+# Binários, para o git não tentar normalizar nem mostrar diff de texto
+*.png binary
+*.jpg binary
+*.webp binary
+*.avif binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary

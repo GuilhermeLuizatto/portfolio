@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Página-índice do repositório. É o endereço que você manda quando alguém pede
+     "me manda seu portfólio". As peças ficam uma pasta abaixo.
+     Se você renomear o repositório, rode o comando que está no README.md para
+     atualizar os endereços canônicos das três páginas de uma vez. -->
+
+<title>Guilherme Luizatto — Portfólio de desenvolvimento web</title>
+<meta name="description" content="Peças de desenvolvimento web de Guilherme Luizatto: uma landing page completa e uma calculadora da transição da reforma tributária. Cada uma é um arquivo HTML, sem build e sem back-end.">
+<link rel="canonical" href="https://GuilhermeLuizatto.github.io/portfolio/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Guilherme Luizatto — Portfólio de desenvolvimento web">
+<meta property="og:description" content="Uma landing page completa e uma calculadora da reforma tributária. Cada peça é um arquivo HTML, sem build e sem back-end.">
+<meta property="og:url" content="https://GuilhermeLuizatto.github.io/portfolio/">
+<meta name="theme-color" content="#280e25">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23280e25'/%3E%3Cpath d='M9 11.5 13.5 16 9 20.5' fill='none' stroke='%23ff9754' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M17 21h6' stroke='%23ff9754' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Instrument+Sans:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+:root {
+  --tinta: #280e25;
+  --tinta-2: #351a32;
+  --papel: #f9f0f8;
+  --laranja-cena: #ff9754;
+  --areia: #e7d4bf;
+  --ink: #f9eef8;
+  --suave: #c9adc4;
+  --linha: #5a3a55;
+  --display: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --texto: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --raio: 14px;
+  --gutter: clamp(1.15rem, .8rem + 2vw, 2.5rem);
+  --ease: cubic-bezier(.16, 1, .3, 1);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; background: var(--tinta); color: var(--ink);
+  font-family: var(--texto); font-size: clamp(1rem, .96rem + .2vw, 1.1rem); line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: var(--display); line-height: 1.03; letter-spacing: -.025em; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+a { color: inherit; }
+::selection { background: var(--laranja-cena); color: var(--tinta); }
+:focus-visible { outline: 3px solid var(--laranja-cena); outline-offset: 3px; border-radius: 4px; }
+
+.env { width: 100%; max-width: 1060px; margin-inline: auto; padding-inline: var(--gutter); }
+.topo { padding-block: clamp(3.5rem, 2.2rem + 6vw, 7rem) clamp(2.5rem, 2rem + 3vw, 4rem); }
+.rotulo {
+  font-family: var(--mono); font-size: .76rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--laranja-cena); display: flex; align-items: center; gap: .6rem; margin-bottom: 1.3rem;
+}
+.rotulo::before { content: ""; width: 1.8rem; height: 1px; background: currentColor; }
+h1 { font-size: clamp(2.2rem, 1.5rem + 3.6vw, 4rem); font-weight: 800; max-width: 18ch; }
+h1 em { font-style: normal; color: var(--laranja-cena); }
+.sub { margin-top: 1.4rem; max-width: 56ch; color: var(--suave); font-size: clamp(1.05rem, 1rem + .4vw, 1.25rem); line-height: 1.5; }
+
+.pecas { display: grid; gap: 1.1rem; padding-bottom: clamp(3rem, 2rem + 3vw, 4.5rem); }
+@media (min-width: 860px) { .pecas { grid-template-columns: repeat(2, 1fr); } }
+
+.peca {
+  display: flex; flex-direction: column;
+  background: var(--tinta-2); border: 1px solid var(--linha); border-radius: var(--raio);
+  padding: clamp(1.4rem, 1.1rem + 1.2vw, 2.1rem);
+  text-decoration: none;
+  transition: transform .22s var(--ease), border-color .22s var(--ease);
+}
+.peca:hover { transform: translateY(-3px); border-color: var(--laranja-cena); }
+@media (prefers-reduced-motion: reduce) { .peca:hover { transform: none; } }
+.peca__tag { font-family: var(--mono); font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--laranja-cena); }
+.peca h2 { font-size: clamp(1.4rem, 1.2rem + .9vw, 1.9rem); margin-top: .7rem; }
+.peca p { margin-top: .8rem; color: var(--suave); font-size: .94rem; line-height: 1.55; }
+.peca__stack { margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: .3rem; font-family: var(--mono); font-size: .7rem; }
+.peca__stack span { border: 1px solid var(--linha); border-radius: 100px; padding: .18rem .6rem; }
+.peca__ir {
+  margin-top: 1.4rem; font-weight: 600; display: inline-flex; align-items: center; gap: .5rem;
+  color: var(--laranja-cena);
+}
+.peca__ir .seta { transition: transform .22s var(--ease); }
+.peca:hover .peca__ir .seta { transform: translateX(4px); }
+
+.sobre { border-top: 1px solid var(--linha); padding-block: clamp(2.5rem, 2rem + 2vw, 3.5rem); }
+.sobre h2 { font-size: clamp(1.3rem, 1.1rem + .8vw, 1.7rem); }
+.sobre p { margin-top: .9rem; max-width: 70ch; color: var(--suave); font-size: .95rem; }
+.sobre p + p { margin-top: .7rem; }
+.link {
+  color: var(--laranja-cena); text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px; background-repeat: no-repeat; background-position: 0 100%;
+  transition: background-size .22s var(--ease); padding-bottom: 2px;
+}
+.link:hover, .link:focus-visible { background-size: 100% 2px; }
+.canais { margin-top: 1.6rem; display: flex; flex-wrap: wrap; gap: .7rem; }
+.btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-weight: 600; font-size: .95rem; padding: .8rem 1.3rem;
+  border: 2px solid var(--linha); border-radius: 100px; text-decoration: none;
+  transition: border-color .22s var(--ease), background-color .22s var(--ease);
+}
+.btn--cheio { background: var(--laranja-cena); color: var(--tinta); border-color: var(--laranja-cena); }
+.btn:hover { border-color: var(--laranja-cena); }
+
+.rodape { border-top: 1px solid var(--linha); padding-block: 2rem 2.6rem; }
+.rodape p { color: var(--suave); font-size: .82rem; max-width: 70ch; }
+.rodape p + p { margin-top: .6rem; }
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="env">
+    <p class="rotulo">Portfólio · desenvolvimento web</p>
+    <h1>Duas peças que você pode <em>abrir e conferir</em>.</h1>
+    <p class="sub">
+      Sou o Guilherme Luizatto, desenvolvedor com formação em TI. Em vez de descrever o que eu
+      faço, aqui estão duas coisas que eu fiz. Cada uma é um único arquivo HTML: sem build, sem
+      framework e sem back-end.
+    </p>
+  </div>
+</header>
+
+<main class="env">
+  <div class="pecas">
+
+    <a class="peca" href="lp-servicos/">
+      <span class="peca__tag">Landing page</span>
+      <h2>Página de serviços</h2>
+      <p>
+        Uma landing page completa, do briefing à entrega: estratégia de conversão, copy, direção
+        de arte própria e movimento guiado pela rolagem — com um palco fixo onde o processo passa
+        etapa por etapa. Passou por uma bateria automatizada de acessibilidade, performance e
+        conformidade antes de ir ao ar.
+      </p>
+      <div class="peca__stack">
+        <span>HTML único</span><span>CSS scroll-driven</span><span>SVG</span>
+        <span>WCAG 2.2 AA</span><span>JSON-LD</span><span>Zero dependência</span>
+      </div>
+      <span class="peca__ir">Abrir a página <span class="seta" aria-hidden="true">→</span></span>
+    </a>
+
+    <a class="peca" href="calculadora-reforma-tributaria/">
+      <span class="peca__tag">Ferramenta</span>
+      <h2>Calculadora da reforma tributária</h2>
+      <p>
+        Simula, ano a ano de 2026 a 2033, quanto uma empresa de serviços recolheria no modelo
+        atual e no da CBS e do IBS. Gráfico em SVG gerado na mão, sem biblioteca. Nenhuma alíquota
+        está escondida no código: todas ficam num painel editável, marcadas como estimativa a
+        confirmar — porque boa parte delas ainda não foi fixada.
+      </p>
+      <div class="peca__stack">
+        <span>HTML único</span><span>Lógica de negócio</span><span>Gráfico em SVG</span>
+        <span>Sem back-end</span><span>Nenhum dado sai do dispositivo</span>
+      </div>
+      <span class="peca__ir">Abrir a calculadora <span class="seta" aria-hidden="true">→</span></span>
+    </a>
+
+  </div>
+
+  <section class="sobre">
+    <h2>Por que só duas</h2>
+    <p>
+      Porque é o que eu tenho para mostrar hoje, e eu prefiro duas peças que você abre e confere
+      a uma galeria de capturas de tela sem link. Estou começando nas plataformas de freelance
+      agora: não tenho avaliação, número de projetos entregues nem depoimento para exibir — e não
+      invento nenhum dos três.
+    </p>
+    <p>
+      O que existe de verdade, além destas duas peças: o
+      <a class="link" href="https://atendara.app" target="_blank" rel="noopener">Atendara</a>,
+      um SaaS de agendamento que eu construí e mantenho em produção sozinho, e a
+      <a class="link" href="https://serifalabs.com" target="_blank" rel="noopener">Serifa Labs</a>,
+      estúdio de software que eu toco com outros dois desenvolvedores, onde construí a landing
+      pública, as telas de login, o painel administrativo e os avisos do portal do cliente.
+    </p>
+
+    <div class="canais">
+      <a class="btn btn--cheio" href="https://wa.me/5513996649260?text=Oi%2C%20Guilherme!%20Vi%20o%20seu%20portf%C3%B3lio%20e%20queria%20falar%20sobre%20um%20projeto.">
+        Falar no WhatsApp <span class="seta" aria-hidden="true">→</span>
+      </a>
+      <a class="btn" href="mailto:guilhermeluizatto@gmail.com?subject=Projeto%20-%20vim%20pelo%20seu%20portf%C3%B3lio">Mandar e-mail</a>
+      <a class="btn" href="https://github.com/GuilhermeLuizatto" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="env">
+    <p><strong>Guilherme Luizatto</strong> — landing pages, automações, dashboards e manutenção
+    de sistemas web. Remoto, de qualquer lugar do Brasil.</p>
+    <p>Este site não usa cookie, não tem analytics e não carrega script de terceiro. O código
+    das duas peças está aberto no repositório — e cada uma é um arquivo só, então dá para ler
+    tudo sem clonar nada.</p>
+  </div>
+</footer>
+
+</body>
+</html>

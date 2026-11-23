@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ===========================================================================
+     CALCULADORA DA TRANSIÇÃO DA REFORMA TRIBUTÁRIA (CBS + IBS)
+     Peça de portfólio. Ferramenta de cálculo no navegador: nenhum dado sai do
+     dispositivo, nenhuma requisição de rede, nenhum back-end.
+
+     DECISÃO DE PROJETO IMPORTANTE: nenhuma alíquota está escondida no código.
+     Todas vivem no painel "Premissas", editáveis, com o valor padrão marcado
+     como estimativa a confirmar na fonte oficial. Uma calculadora tributária
+     que finge certeza sobre número que ainda não foi fixado é pior que
+     calculadora nenhuma.
+
+     ANTES DE PUBLICAR: troque https://GuilhermeLuizatto.github.io/portfolio/calculadora-reforma-tributaria/ no canonical.
+     =========================================================================== -->
+
+<title>Calculadora da transição da Reforma Tributária — CBS e IBS ano a ano</title>
+<meta name="description" content="Simule, ano a ano de 2026 a 2033, quanto a sua empresa de serviços recolheria de tributos sobre consumo no modelo atual e no modelo da CBS e do IBS. Todas as alíquotas são editáveis. Cálculo no seu navegador, sem enviar dado nenhum.">
+<link rel="canonical" href="https://GuilhermeLuizatto.github.io/portfolio/calculadora-reforma-tributaria/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Calculadora da transição da Reforma Tributária">
+<meta property="og:description" content="CBS e IBS ano a ano, com todas as alíquotas editáveis. Roda no seu navegador, sem enviar dado nenhum.">
+<meta name="theme-color" content="#280e25">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23280e25'/%3E%3Crect x='8' y='8' width='16' height='4' rx='1.4' fill='%23ff9754'/%3E%3Crect x='8' y='15' width='7' height='9' rx='1.4' fill='%23ff9754'/%3E%3Crect x='17' y='15' width='7' height='9' rx='1.4' fill='%23e74f00'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Instrument+Sans:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+:root {
+  --tinta: #280e25;
+  --tinta-2: #351a32;
+  --papel: #f9f0f8;
+  --papel-2: #eee2ec;
+  --laranja-cena: #ff9754;
+  --laranja-sinal: #e74f00;
+  --ink: #291226;
+  --suave: #6b5168;
+  --linha: #d3bdd0;
+
+  --display: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --texto: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+
+  --raio: 12px;
+  --gutter: clamp(1rem, .7rem + 1.6vw, 2rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--papel); color: var(--ink);
+  font-family: var(--texto); font-size: 1rem; line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: var(--display); line-height: 1.05; letter-spacing: -.022em; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+::selection { background: var(--laranja-cena); color: var(--tinta); }
+:focus-visible { outline: 3px solid var(--laranja-sinal); outline-offset: 2px; border-radius: 4px; }
+
+.pular { position: absolute; left: -9999px; top: 0; z-index: 90; background: var(--tinta); color: var(--papel); padding: .8rem 1.1rem; }
+.pular:focus { left: 0; }
+
+.env { width: 100%; max-width: 1180px; margin-inline: auto; padding-inline: var(--gutter); }
+
+/* ---------- topo ---------- */
+.topo { background: var(--tinta); color: var(--papel); padding-block: clamp(2.4rem, 1.6rem + 3vw, 4rem); }
+.topo .rotulo {
+  font-family: var(--mono); font-size: .76rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--laranja-cena); display: flex; align-items: center; gap: .6rem; margin-bottom: 1.2rem;
+}
+.topo .rotulo::before { content: ""; width: 1.8rem; height: 1px; background: currentColor; }
+.topo h1 { font-size: clamp(1.9rem, 1.3rem + 3vw, 3.3rem); max-width: 20ch; font-weight: 800; }
+.topo p { margin-top: 1.1rem; max-width: 62ch; color: #d9c4d5; }
+.selos { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1.5rem; font-family: var(--mono); font-size: .72rem; }
+.selos span { border: 1px solid #5a3a55; border-radius: 100px; padding: .25rem .7rem; }
+
+/* ---------- aviso ---------- */
+.aviso {
+  background: var(--laranja-cena); color: var(--tinta);
+  border-block: 2px solid var(--laranja-sinal);
+  padding-block: 1.1rem;
+}
+.aviso p { font-size: .9rem; max-width: 92ch; }
+.aviso strong { font-weight: 600; }
+
+/* ---------- layout ---------- */
+.app { padding-block: clamp(2rem, 1.4rem + 2vw, 3.4rem); }
+.app__grade { display: grid; gap: 1.5rem; align-items: start; }
+/* Item de grid tem min-width:auto por padrão, então a tabela larga empurraria
+   a coluna e criaria rolagem horizontal na página inteira. O overflow tem que
+   ficar preso em .tabela-rolo, não vazar para o body. */
+.app__grade > * { min-width: 0; }
+@media (min-width: 1000px) { .app__grade { grid-template-columns: 370px minmax(0, 1fr); gap: 2rem; } }
+
+.painel {
+  background: #fff; border: 1px solid var(--linha); border-radius: var(--raio);
+  padding: clamp(1.1rem, .9rem + .8vw, 1.6rem);
+}
+@media (min-width: 1000px) { .painel--entrada { position: sticky; top: 1rem; } }
+.painel h2 { font-size: 1.25rem; margin-bottom: .3rem; }
+.painel__ajuda { font-size: .82rem; color: var(--suave); margin-bottom: 1.3rem; }
+
+.campo { margin-bottom: 1.1rem; }
+.campo > label, .campo > legend {
+  display: block; font-size: .82rem; font-weight: 600; margin-bottom: .35rem; padding: 0;
+}
+.campo .dica { display: block; font-size: .75rem; color: var(--suave); font-weight: 400; margin-top: .2rem; line-height: 1.45; }
+input[type="number"], input[type="text"], select {
+  width: 100%; font-family: var(--mono); font-size: .95rem;
+  padding: .6rem .7rem; border: 1px solid var(--linha); border-radius: 8px;
+  background: var(--papel); color: var(--ink);
+}
+input[type="number"]:hover, select:hover { border-color: var(--laranja-sinal); }
+fieldset { border: 0; margin: 0; padding: 0; }
+.radios { display: grid; gap: .4rem; margin-top: .4rem; }
+.radios label {
+  display: flex; gap: .55rem; align-items: flex-start; font-size: .86rem;
+  border: 1px solid var(--linha); border-radius: 8px; padding: .55rem .65rem; cursor: pointer;
+}
+.radios label:hover { border-color: var(--laranja-sinal); }
+.radios input { margin-top: .25rem; accent-color: var(--laranja-sinal); }
+
+/* ---------- resultado ---------- */
+.resumo { display: grid; gap: .8rem; margin-bottom: 1.5rem; }
+@media (min-width: 620px) { .resumo { grid-template-columns: repeat(3, 1fr); } }
+.tile { border: 1px solid var(--linha); border-radius: var(--raio); padding: 1rem; background: var(--papel-2); }
+.tile dt { font-family: var(--mono); font-size: .7rem; letter-spacing: .05em; text-transform: uppercase; color: var(--suave); }
+.tile dd { margin: .45rem 0 0; font-family: var(--display); font-size: clamp(1.3rem, 1.1rem + 1vw, 1.9rem); font-weight: 700; letter-spacing: -.02em; }
+.tile small { display: block; font-size: .74rem; color: var(--suave); margin-top: .3rem; font-family: var(--texto); line-height: 1.4; }
+.tile--destaque { background: var(--tinta); color: var(--papel); border-color: var(--tinta); }
+.tile--destaque dt, .tile--destaque small { color: #c9adc4; }
+.tile--destaque dd { color: var(--laranja-cena); }
+
+.grafico { margin-bottom: 1.6rem; }
+.grafico svg { width: 100%; height: auto; display: block; }
+.legenda { display: flex; flex-wrap: wrap; gap: .4rem 1.1rem; font-size: .78rem; margin-top: .7rem; }
+.legenda span { display: inline-flex; align-items: center; gap: .4rem; }
+.chip { width: .8rem; height: .8rem; border-radius: 3px; flex: none; }
+
+.tabela-rolo { overflow-x: auto; border: 1px solid var(--linha); border-radius: var(--raio); }
+table { border-collapse: collapse; width: 100%; font-size: .85rem; min-width: 620px; }
+caption { text-align: left; padding: .9rem 1rem; font-size: .8rem; color: var(--suave); border-bottom: 1px solid var(--linha); }
+th, td { padding: .6rem .8rem; text-align: right; border-bottom: 1px solid var(--linha); font-family: var(--mono); font-size: .82rem; }
+th[scope="col"] { background: var(--papel-2); font-weight: 500; font-size: .72rem; letter-spacing: .04em; text-transform: uppercase; color: var(--suave); }
+th[scope="row"] { text-align: left; font-weight: 500; }
+tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
+tr.marco th[scope="row"]::after { content: " ●"; color: var(--laranja-sinal); }
+.pos { color: #8a2b00; }
+.neg { color: #1f5c2e; }
+
+/* ---------- premissas ---------- */
+.premissas { margin-top: 1.5rem; }
+.premissas summary {
+  cursor: pointer; list-style: none; font-family: var(--display); font-weight: 600; font-size: 1.1rem;
+  padding: 1rem; border: 1px solid var(--linha); border-radius: var(--raio); background: #fff;
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+}
+.premissas summary::-webkit-details-marker { display: none; }
+.premissas summary::after { content: "▾"; color: var(--laranja-sinal); font-size: 1.1rem; }
+.premissas[open] summary { border-radius: var(--raio) var(--raio) 0 0; border-bottom: 0; }
+.premissas[open] summary::after { content: "▴"; }
+.premissas__corpo { border: 1px solid var(--linha); border-top: 0; border-radius: 0 0 var(--raio) var(--raio); padding: 1.3rem; background: #fff; }
+.premissas__corpo h3 { font-size: 1rem; margin: 1.4rem 0 .6rem; }
+.premissas__corpo h3:first-child { margin-top: 0; }
+.premissas__corpo p { font-size: .85rem; color: var(--suave); max-width: 80ch; }
+.pares { display: grid; gap: .8rem; margin-top: .8rem; }
+@media (min-width: 560px) { .pares { grid-template-columns: repeat(2, 1fr); } }
+.pares .campo { margin: 0; }
+.nota-fonte {
+  font-family: var(--mono); font-size: .74rem; color: var(--suave);
+  border-left: 3px solid var(--laranja-sinal); padding: .4rem 0 .4rem .8rem; margin-top: .8rem; line-height: 1.5;
+}
+.fontes { list-style: none; margin: .7rem 0 0; padding: 0; display: grid; gap: .5rem; font-size: .84rem; }
+.fontes li { display: flex; gap: .6rem; }
+.fontes li::before { content: "§"; color: var(--laranja-sinal); font-family: var(--mono); flex: none; }
+
+.rodape { background: var(--tinta); color: #c9adc4; padding-block: 2.2rem; margin-top: 2.5rem; font-size: .82rem; }
+.rodape a { color: var(--laranja-cena); }
+.rodape p + p { margin-top: .7rem; }
+.rodape strong { color: var(--papel); }
+
+@media print { .painel--entrada, .premissas, .pular { display: none; } }
+</style>
+</head>
+<body>
+
+<a class="pular" href="#resultado">Pular para o resultado</a>
+
+<header class="topo">
+  <div class="env">
+    <p class="rotulo">Ferramenta · roda no seu navegador</p>
+    <h1>Calculadora da transição da Reforma Tributária</h1>
+    <p>
+      Quanto a sua empresa de serviços recolheria de tributos sobre consumo, ano a ano, de 2026
+      a 2033 — no modelo de hoje e no modelo da CBS e do IBS. Todas as alíquotas são editáveis,
+      porque boa parte delas ainda não está fixada.
+    </p>
+    <div class="selos">
+      <span>Sem back-end</span><span>Sem cookie</span><span>Sem analytics</span>
+      <span>Nenhum dado sai do seu dispositivo</span><span>Um arquivo HTML</span>
+    </div>
+  </div>
+</header>
+
+<div class="aviso">
+  <div class="env">
+    <p>
+      <strong>Isto é uma estimativa, não é consultoria tributária.</strong>
+      A alíquota de referência da CBS e do IBS ainda não foi fixada, o enquadramento do seu caso
+      depende de análise profissional, e esta ferramenta ignora de propósito IRPJ, CSLL, folha e
+      regimes específicos. Os valores padrão são estimativas públicas, estão todos abertos no
+      painel <em>Premissas</em> e você deve conferi-los na fonte oficial antes de decidir
+      qualquer coisa. Fale com o seu contador.
+    </p>
+  </div>
+</div>
+
+<main class="app">
+  <div class="env app__grade">
+
+    <!-- ================== ENTRADA ================== -->
+    <form class="painel painel--entrada" id="form" novalidate>
+      <h2>Os seus números</h2>
+      <p class="painel__ajuda">Muda sozinho conforme você digita. Nada é enviado a lugar nenhum.</p>
+
+      <div class="campo">
+        <label for="faturamento">Faturamento mensal (R$)</label>
+        <input type="number" id="faturamento" value="50000" min="0" step="1000" inputmode="decimal">
+      </div>
+
+      <div class="campo">
+        <label for="creditaveis">Compras de fornecedores PJ por mês (R$)</label>
+        <input type="number" id="creditaveis" value="8000" min="0" step="500" inputmode="decimal">
+        <span class="dica">
+          Software, aluguel de PJ, serviços terceirizados, energia, materiais. É a parte que gera
+          crédito no novo modelo. <strong>Folha de pagamento e pró-labore não entram</strong> —
+          é justamente por isso que negócio de serviço, que é quase só gente, tende a sentir mais.
+        </span>
+      </div>
+
+      <div class="campo">
+        <fieldset>
+          <legend>Regime atual</legend>
+          <div class="radios">
+            <label><input type="radio" name="regime" value="presumido" checked>
+              <span>Lucro Presumido ou Real</span></label>
+            <label><input type="radio" name="regime" value="simples">
+              <span>Simples Nacional</span></label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="campo" id="campo-presumido">
+        <label for="aliqAtual">Alíquota atual sobre consumo (%)</label>
+        <input type="number" id="aliqAtual" value="8.65" min="0" max="40" step="0.01" inputmode="decimal">
+        <span class="dica">
+          Some PIS, Cofins e ISS. Serviço no Lucro Presumido costuma somar 0,65% + 3% + ISS
+          (de 2% a 5%). O padrão aqui usa ISS de 5%. Não inclua IRPJ nem CSLL: a reforma não
+          mexe neles.
+        </span>
+      </div>
+
+      <div class="campo" id="campo-simples" hidden>
+        <label for="aliqSimples">Alíquota efetiva do Simples (%)</label>
+        <input type="number" id="aliqSimples" value="11.2" min="0" max="33" step="0.01" inputmode="decimal">
+        <span class="dica">
+          A alíquota efetiva da sua última apuração, do DAS. Dela, só a parte de CPP, IRPJ e CSLL
+          fica fora da comparação — ver as Premissas.
+        </span>
+      </div>
+
+      <div class="campo">
+        <label for="reducao">Redução de alíquota aplicável</label>
+        <select id="reducao">
+          <option value="0" selected>Nenhuma — alíquota cheia</option>
+          <option value="30">30% — profissões regulamentadas</option>
+          <option value="60">60% — saúde, educação e outras listadas</option>
+          <option value="100">100% — operação isenta ou com alíquota zero</option>
+        </select>
+        <span class="dica">
+          A LC 214/2025 lista quais atividades entram em cada faixa. Confirme o seu caso com o
+          contador antes de usar qualquer redução aqui.
+        </span>
+      </div>
+
+      <div class="campo">
+        <fieldset>
+          <legend>Quem são os seus clientes?</legend>
+          <div class="radios">
+            <label><input type="radio" name="cliente" value="pj" checked>
+              <span>Principalmente empresas (PJ)</span></label>
+            <label><input type="radio" name="cliente" value="pf">
+              <span>Principalmente consumidor final (PF)</span></label>
+          </div>
+        </fieldset>
+        <span class="dica">
+          Não muda o seu cálculo — muda a leitura dele. Veja a nota embaixo do resultado.
+        </span>
+      </div>
+    </form>
+
+    <!-- ================== RESULTADO ================== -->
+    <section id="resultado" aria-labelledby="t-res">
+      <div class="painel">
+        <h2 id="t-res">O que a conta diz</h2>
+        <p class="painel__ajuda" id="frase-regime"></p>
+
+        <dl class="resumo">
+          <div class="tile">
+            <dt data-rot-hoje>Hoje, por mês</dt>
+            <dd id="r-hoje">—</dd>
+            <small>Tributos sobre consumo no regime atual</small>
+          </div>
+          <div class="tile">
+            <dt data-rot-novo>Em 2033, por mês</dt>
+            <dd id="r-2033">—</dd>
+            <small>Com o modelo CBS + IBS inteiro em vigor</small>
+          </div>
+          <div class="tile tile--destaque">
+            <dt>Diferença</dt>
+            <dd id="r-dif">—</dd>
+            <small id="r-dif-ano">Por mês, quando a transição terminar</small>
+          </div>
+        </dl>
+
+        <div class="grafico">
+          <svg id="grafico" viewBox="0 0 740 260" role="img" aria-labelledby="g-titulo">
+            <title id="g-titulo">Comparação do recolhimento mensal estimado, por ano, entre o regime atual e o modelo CBS mais IBS</title>
+          </svg>
+          <div class="legenda">
+            <span><i class="chip" style="background:#9a7b95"></i> <span data-leg-antigo>Regime atual</span></span>
+            <span><i class="chip" style="background:var(--laranja-sinal)"></i> <span data-leg-novo>CBS + IBS a recolher</span></span>
+          </div>
+        </div>
+
+        <div class="tabela-rolo">
+          <table>
+            <caption>Valores mensais estimados em reais. ● marca os anos de virada da transição.</caption>
+            <thead>
+              <tr>
+                <th scope="col" style="text-align:left">Ano</th>
+                <th scope="col">Alíquota efetiva</th>
+                <th scope="col">Débito</th>
+                <th scope="col">Crédito</th>
+                <th scope="col">Novo modelo</th>
+                <th scope="col">Regime atual</th>
+                <th scope="col">Diferença</th>
+              </tr>
+            </thead>
+            <tbody id="corpo-tabela"></tbody>
+          </table>
+        </div>
+
+        <p class="nota-fonte" id="nota-cliente"></p>
+      </div>
+
+      <!-- ================== PREMISSAS ================== -->
+      <details class="premissas">
+        <summary>Premissas e fontes — todas as alíquotas estão aqui, e todas são editáveis</summary>
+        <div class="premissas__corpo">
+
+          <h3>Alíquota de referência</h3>
+          <p>
+            A alíquota de referência da CBS e do IBS é fixada por resolução do Senado, com base em
+            cálculo do Tribunal de Contas da União, e <strong>não estava definida em caráter
+            definitivo quando esta ferramenta foi escrita</strong>. O valor abaixo é a estimativa
+            que circulou publicamente durante a tramitação. Troque pelo número vigente.
+          </p>
+          <div class="pares">
+            <div class="campo">
+              <label for="cbs">CBS — federal (%)</label>
+              <input type="number" id="cbs" value="8.8" min="0" max="40" step="0.01" inputmode="decimal">
+            </div>
+            <div class="campo">
+              <label for="ibs">IBS — estadual e municipal (%)</label>
+              <input type="number" id="ibs" value="17.7" min="0" max="40" step="0.01" inputmode="decimal">
+            </div>
+          </div>
+          <p class="nota-fonte" id="nota-total"></p>
+
+          <h3>Cronograma da transição</h3>
+          <p>
+            O quanto de cada tributo vale em cada ano. Os percentuais abaixo são a fração da
+            alíquota cheia aplicada naquele ano. Edite se a regra mudar.
+          </p>
+          <div class="pares">
+            <div class="campo">
+              <label for="t2026">2026 — CBS de teste (%)</label>
+              <input type="number" id="t2026" value="0.9" min="0" max="30" step="0.01" inputmode="decimal">
+              <span class="dica">Alíquota em pontos, não fração. Em 2026 o valor recolhido é compensável, então a ferramenta trata esse ano como custo zero.</span>
+            </div>
+            <div class="campo">
+              <label for="ibs2627">2026 a 2028 — IBS de teste (%)</label>
+              <input type="number" id="ibs2627" value="0.1" min="0" max="30" step="0.01" inputmode="decimal">
+            </div>
+          </div>
+          <p>
+            De 2029 a 2032 o IBS sobe em quatro degraus enquanto o ICMS e o ISS caem na mesma
+            proporção. Em 2033 o modelo antigo acaba. Esses degraus estão na tabela como
+            <span style="font-family:var(--mono)">2/10, 4/10, 6/10, 8/10</span> do IBS cheio,
+            com o resíduo correspondente do regime atual.
+          </p>
+
+          <h3>O que esta conta NÃO faz</h3>
+          <p>
+            Uma ferramenta honesta precisa dizer o que ela ignora. Esta ignora:
+          </p>
+          <ul class="fontes">
+            <li>IRPJ, CSLL, contribuição previdenciária e encargos de folha — a reforma do consumo não mexe neles</li>
+            <li>Imposto Seletivo, que incide sobre produtos específicos e provavelmente não é o seu caso em serviços</li>
+            <li>Split payment, prazo de recolhimento e efeito de caixa — que podem doer mais que a alíquota</li>
+            <li>Regimes específicos e diferenciados além da redução que você escolher acima</li>
+            <li>Cashback, Zona Franca, bens de capital e as dezenas de regras setoriais</li>
+            <li>A decisão de uma empresa do Simples recolher CBS e IBS por fora para gerar crédito ao cliente</li>
+          </ul>
+
+          <h3>Base normativa</h3>
+          <ul class="fontes">
+            <li>Emenda Constitucional 132/2023 — cria a CBS, o IBS e o Imposto Seletivo, e define o cronograma</li>
+            <li>Lei Complementar 214/2025 — institui e regulamenta a CBS e o IBS</li>
+            <li>Resolução do Senado Federal que fixa a alíquota de referência — confira a vigente</li>
+          </ul>
+          <p class="nota-fonte">
+            Confira sempre no texto oficial. Legislação tributária muda, e uma calculadora
+            desatualizada que parece certa é mais perigosa que uma planilha em branco.
+          </p>
+        </div>
+      </details>
+    </section>
+  </div>
+</main>
+
+<footer class="rodape">
+  <div class="env">
+    <p><strong>Como esta ferramenta foi feita.</strong> Um arquivo HTML, sem framework, sem
+    build e sem back-end. O cálculo roda no seu navegador: os seus números não são enviados,
+    não são salvos e não passam por servidor nenhum. Não há cookie nem analytics.</p>
+    <p>Peça de portfólio de desenvolvimento web. O código está aberto na página — use
+    <em>ver código-fonte</em>.</p>
+    <p><strong>De novo, porque importa:</strong> isto é uma estimativa com premissas que você
+    pode e deve conferir. Não é consultoria tributária e não substitui o seu contador.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var brl = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+  var pct = new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  var $ = function (id) { return document.getElementById(id); };
+  var num = function (id) { var v = parseFloat($(id).value); return isFinite(v) && v >= 0 ? v : 0; };
+
+  /* Degraus de 2029 a 2032: fração da alíquota cheia do IBS que já vale naquele ano,
+     e a fração do ISS que ainda sobrevive. 2033 em diante é o modelo inteiro. */
+  var DEGRAUS = {
+    2029: { ibs: 0.2, iss: 0.9 },
+    2030: { ibs: 0.4, iss: 0.8 },
+    2031: { ibs: 0.6, iss: 0.7 },
+    2032: { ibs: 0.8, iss: 0.6 }
+  };
+  var MARCOS = { 2026: 1, 2027: 1, 2029: 1, 2033: 1 };
+  var PIS_COFINS = 0.0365; /* 0,65% + 3%, regime cumulativo do Lucro Presumido */
+
+  function lerEntradas() {
+    var regime = document.querySelector('input[name="regime"]:checked').value;
+    return {
+      faturamento: num('faturamento'),
+      creditaveis: num('creditaveis'),
+      regime: regime,
+      aliqAtual: regime === 'simples' ? num('aliqSimples') : num('aliqAtual'),
+      reducao: parseFloat($('reducao').value) / 100,
+      cliente: document.querySelector('input[name="cliente"]:checked').value,
+      cbs: num('cbs'),
+      ibs: num('ibs'),
+      t2026: num('t2026'),
+      ibsTeste: num('ibs2627')
+    };
+  }
+
+  /* Alíquota de CBS + IBS que já vale em cada ano, em pontos percentuais,
+     antes da redução do setor. */
+  function aliquotaNova(ano, e) {
+    if (ano === 2026) return { pontos: e.t2026 + e.ibsTeste, teste: true };
+    if (ano === 2027 || ano === 2028) return { pontos: e.cbs + e.ibsTeste, teste: false };
+    var d = DEGRAUS[ano];
+    if (d) return { pontos: e.cbs + e.ibs * d.ibs, teste: false };
+    return { pontos: e.cbs + e.ibs, teste: false };
+  }
+
+  /* O que ainda se paga do modelo antigo em cada ano.
+     Lucro Presumido: PIS e Cofins acabam em 2027; o ISS cai em quatro degraus
+     de 2029 a 2032 e some em 2033.
+     Simples Nacional: o Simples continua existindo depois da reforma. A conta
+     então não "migra" sozinha — ela compara ficar no Simples com sair dele. */
+  function antigoDoAno(ano, e, hoje) {
+    if (e.regime === 'simples') return hoje;
+    if (ano === 2026) return hoje;
+    var iss = Math.max(0, hoje - e.faturamento * PIS_COFINS);
+    if (ano === 2027 || ano === 2028) return iss;
+    var d = DEGRAUS[ano];
+    if (d) return iss * d.iss;
+    return 0;
+  }
+
+  function calcular() {
+    var e = lerEntradas();
+    var linhas = [];
+    var hoje = e.faturamento * (e.aliqAtual / 100);
+    var simples = e.regime === 'simples';
+
+    for (var ano = 2026; ano <= 2033; ano++) {
+      var a = aliquotaNova(ano, e);
+      var aliq = a.pontos * (1 - e.reducao);
+      var debito = e.faturamento * (aliq / 100);
+      var credito = Math.min(debito, e.creditaveis * (aliq / 100));
+      var novo = debito - credito;
+
+      /* 2026 é ano de teste: o recolhido é compensável, então o custo efetivo é zero. */
+      if (a.teste) { debito = 0; credito = 0; novo = 0; }
+
+      /* No Simples, o modelo novo é a ALTERNATIVA a ficar no Simples, não uma soma:
+         enquanto a empresa fica no Simples, ela paga o DAS e nada de CBS/IBS por fora.
+         Por isso o total do ano é um ou outro, e a tabela mostra os dois lados. */
+      var total = simples ? Math.min(hoje, novo === 0 ? hoje : novo) : novo + antigoDoAno(ano, e, hoje);
+      if (simples) total = novo === 0 ? hoje : novo;
+
+      linhas.push({
+        ano: ano,
+        aliq: aliq,
+        debito: debito,
+        credito: credito,
+        novo: novo,
+        antigo: antigoDoAno(ano, e, hoje),
+        total: total
+      });
+    }
+
+    return { entradas: e, hoje: hoje, simples: simples, linhas: linhas };
+  }
+
+  function pintarResumo(r) {
+    var fim = r.linhas[r.linhas.length - 1];
+    var dif = fim.total - r.hoje;
+    $('r-hoje').textContent = brl.format(r.hoje);
+    $('r-2033').textContent = brl.format(fim.total);
+    var el = $('r-dif');
+    el.textContent = (dif > 0 ? '+' : dif < 0 ? '−' : '') + brl.format(Math.abs(dif));
+    $('r-dif-ano').textContent = dif > 0
+      ? 'Por mês, a mais, quando a transição terminar'
+      : dif < 0 ? 'Por mês, a menos, quando a transição terminar'
+      : 'Sem diferença com estas premissas';
+
+    var e = r.entradas;
+    document.querySelectorAll('[data-rot-hoje]').forEach(function (n) {
+      n.textContent = r.simples ? 'Ficando no Simples' : 'Hoje, por mês';
+    });
+    document.querySelectorAll('[data-rot-novo]').forEach(function (n) {
+      n.textContent = r.simples ? 'Saindo do Simples' : 'Em 2033, por mês';
+    });
+    document.querySelectorAll('[data-leg-antigo]').forEach(function (n) {
+      n.textContent = r.simples ? 'Simples Nacional (DAS)' : 'Regime atual';
+    });
+    document.querySelectorAll('[data-leg-novo]').forEach(function (n) {
+      n.textContent = r.simples ? 'CBS + IBS, se sair do Simples' : 'CBS + IBS a recolher';
+    });
+
+    $('frase-regime').textContent = r.simples
+      ? 'O Simples Nacional continua existindo depois da reforma, então aqui não há migração automática: a conta compara FICAR no Simples com SAIR dele e recolher CBS e IBS pelo regime normal. Os dois lados aparecem na tabela. A decisão costuma depender menos da sua carga e mais de os seus clientes precisarem de crédito.'
+      : 'Comparando PIS, Cofins e ISS de hoje com o modelo CBS + IBS, ano a ano da transição. Em 2027 PIS e Cofins acabam e entra a CBS cheia; o ISS só desaparece em 2033.';
+
+    var proporcao = e.faturamento > 0 ? (e.creditaveis / e.faturamento) * 100 : 0;
+    $('nota-cliente').textContent = e.cliente === 'pj'
+      ? 'Como os seus clientes são empresas, há um efeito que esta conta não mede: no novo modelo eles tomam crédito do que pagarem a você, o que reduz o custo real do seu serviço para eles. Em tese isso te dá espaço de preço que hoje não existe. Hoje as suas compras creditáveis são ' + pct.format(proporcao) + '% do faturamento — quanto menor esse número, mais a sua carga sobe, porque serviço é quase só gente, e folha não gera crédito.'
+      : 'Como os seus clientes são consumidores finais, eles não tomam crédito: todo aumento de alíquota aparece no preço ou sai da sua margem. Hoje as suas compras creditáveis são ' + pct.format(proporcao) + '% do faturamento — quanto menor esse número, mais a sua carga sobe, porque folha de pagamento não gera crédito.';
+
+    $('nota-total').textContent = 'Soma atual das duas: ' + pct.format(e.cbs + e.ibs) + '% de alíquota cheia.'
+      + (e.reducao > 0 ? ' Com a redução escolhida, aplicada: ' + pct.format((e.cbs + e.ibs) * (1 - e.reducao)) + '%.' : '');
+  }
+
+  function pintarTabela(r) {
+    var html = '';
+    r.linhas.forEach(function (l) {
+      var dif = l.total - r.hoje;
+      var classe = dif > 0 ? 'pos' : dif < 0 ? 'neg' : '';
+      html += '<tr' + (MARCOS[l.ano] ? ' class="marco"' : '') + '>'
+        + '<th scope="row">' + l.ano + '</th>'
+        + '<td>' + pct.format(l.aliq) + '%</td>'
+        + '<td>' + brl.format(l.debito) + '</td>'
+        + '<td>' + (l.credito > 0 ? '−' + brl.format(l.credito) : brl.format(0)) + '</td>'
+        + '<td>' + brl.format(l.novo) + '</td>'
+        + '<td>' + brl.format(l.antigo) + '</td>'
+        + '<td class="' + classe + '">' + (dif > 0 ? '+' : dif < 0 ? '−' : '') + brl.format(Math.abs(dif)) + '</td>'
+        + '</tr>';
+    });
+    $('corpo-tabela').innerHTML = html;
+  }
+
+  function pintarGrafico(r) {
+    var W = 740, H = 260, base = H - 34, topo = 16;
+    var teto = Math.max(r.hoje, 1);
+    r.linhas.forEach(function (l) { teto = Math.max(teto, l.total); });
+    teto = teto * 1.12 || 1;
+
+    var larguraCol = W / r.linhas.length;
+    var s = '<line x1="0" y1="' + base + '" x2="' + W + '" y2="' + base + '" stroke="#d3bdd0" stroke-width="1"/>';
+
+    /* Linha de referência: a carga de hoje. */
+    var yHoje = base - (r.hoje / teto) * (base - topo);
+    s += '<line x1="0" y1="' + yHoje.toFixed(1) + '" x2="' + W + '" y2="' + yHoje.toFixed(1)
+       + '" stroke="#9a7b95" stroke-width="1.5" stroke-dasharray="5 4"/>';
+    s += '<text x="6" y="' + (yHoje - 6).toFixed(1) + '" font-family="JetBrains Mono, monospace" font-size="10" fill="#6b5168">hoje: '
+       + brl.format(r.hoje) + '</text>';
+
+    r.linhas.forEach(function (l, i) {
+      var x = i * larguraCol;
+      var lb = larguraCol * 0.44;
+      var x1 = x + larguraCol * 0.06;
+      var x2 = x + larguraCol * 0.5;
+      var hAnt = (l.antigo / teto) * (base - topo);
+      var hNovo = (l.novo / teto) * (base - topo);
+
+      s += '<rect x="' + x1.toFixed(1) + '" y="' + (base - hAnt).toFixed(1) + '" width="' + lb.toFixed(1)
+         + '" height="' + Math.max(0, hAnt).toFixed(1) + '" fill="#9a7b95" rx="2"/>';
+      s += '<rect x="' + x2.toFixed(1) + '" y="' + (base - hNovo).toFixed(1) + '" width="' + lb.toFixed(1)
+         + '" height="' + Math.max(0, hNovo).toFixed(1) + '" fill="#e74f00" rx="2"/>';
+      s += '<text x="' + (x + larguraCol / 2).toFixed(1) + '" y="' + (base + 15)
+         + '" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#291226">' + l.ano + '</text>';
+      s += '<text x="' + (x + larguraCol / 2).toFixed(1) + '" y="' + (base + 28)
+         + '" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#6b5168">'
+         + brl.format(l.total) + '</text>';
+    });
+
+    $('grafico').innerHTML = '<title id="g-titulo">Comparação do recolhimento mensal estimado, por ano, '
+      + 'entre o regime atual e o modelo CBS mais IBS</title>' + s;
+  }
+
+  function atualizar() {
+    var simples = document.querySelector('input[name="regime"]:checked').value === 'simples';
+    $('campo-simples').hidden = !simples;
+    $('campo-presumido').hidden = simples;
+    var r = calcular();
+    pintarResumo(r);
+    pintarTabela(r);
+    pintarGrafico(r);
+  }
+
+  document.addEventListener('input', atualizar);
+  document.addEventListener('change', atualizar);
+  atualizar();
+})();
+</script>
+</body>
+</html>

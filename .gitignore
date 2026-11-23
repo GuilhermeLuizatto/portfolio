@@ -1,0 +1,23 @@
+# Documentação interna: não vai para o repositório público.
+# Continua na sua máquina, em C:\Users\guilh\projetos\freelance\portfolio\
+#
+# docs/ guarda o briefing (direção de arte, roteiro de movimento) e o relatório de
+# entrega (resultados dos testes e o que não deu para testar). São documentos de
+# processo, escritos para você e não para cliente.
+PENDENCIAS-VALIDACAO.md
+LEIA-ME.md
+docs/
+
+# Lixo de sistema e de editor
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
+*.log
+
+# Dependências, caso um dia alguma peça passe a ter build
+node_modules/
+dist/
+.env
+.env.*
