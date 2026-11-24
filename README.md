@@ -2,15 +2,15 @@
 
 Desenvolvimento web: landing pages, automações, dashboards e manutenção de sistemas.
 
-**No ar:** https://GuilhermeLuizatto.github.io/portfolio/
+**No ar:** https://guilhermeluizatto.github.io/portfolio/
 
 Duas peças, cada uma num **único arquivo HTML** — sem build, sem framework, sem back-end.
 Dá para baixar e abrir com duplo clique.
 
 | Peça | Abrir | Código |
 |---|---|---|
-| **Página de serviços** — landing page completa, do briefing à entrega | [ver](https://GuilhermeLuizatto.github.io/portfolio/lp-servicos/) | [`lp-servicos/index.html`](lp-servicos/index.html) |
-| **Calculadora da reforma tributária** — CBS e IBS ano a ano, 2026→2033 | [ver](https://GuilhermeLuizatto.github.io/portfolio/calculadora-reforma-tributaria/) | [`calculadora-reforma-tributaria/index.html`](calculadora-reforma-tributaria/index.html) |
+| **Página de serviços** — landing page completa, do briefing à entrega | [ver](https://guilhermeluizatto.github.io/portfolio/lp-servicos/) | [`lp-servicos/index.html`](lp-servicos/index.html) |
+| **Calculadora da reforma tributária** — CBS e IBS ano a ano, 2026→2033 | [ver](https://guilhermeluizatto.github.io/portfolio/calculadora-reforma-tributaria/) | [`calculadora-reforma-tributaria/index.html`](calculadora-reforma-tributaria/index.html) |
 
 ---
 
@@ -78,7 +78,7 @@ As três páginas trazem a URL canônica apontando para um repositório chamado 
 der outro nome, rode isto na raiz do repositório para corrigir as três de uma vez:
 
 ```powershell
-Get-ChildItem -Recurse -Filter index.html | ForEach-Object { (Get-Content $_.FullName -Raw) -replace 'GuilhermeLuizatto\.github\.io/portfolio', 'GuilhermeLuizatto.github.io/NOVO-NOME' | Set-Content $_.FullName -Encoding utf8 }
+Get-ChildItem -Recurse -Filter index.html | ForEach-Object { (Get-Content $_.FullName -Raw) -replace 'GuilhermeLuizatto\.github\.io/portfolio', 'guilhermeluizatto.github.io/NOVO-NOME' | Set-Content $_.FullName -Encoding utf8 }
 ```
 
 Troque `NOVO-NOME` antes de rodar. O mesmo vale se você passar a usar domínio próprio: nesse
